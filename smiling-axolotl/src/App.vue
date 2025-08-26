@@ -96,7 +96,6 @@
 export default {
   name: 'App',
   mounted() {
-    // Add any JavaScript functionality here
     this.initSmoothScrolling();
   },
   methods: {
@@ -119,6 +118,5 @@ export default {
 </script>
 
 <style>
-/* Import the external CSS file */
 @import url('./style.css');
 </style>
