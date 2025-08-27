@@ -17,16 +17,18 @@
           <p class="tagline">CREATED BY PLAYERS FOR PLAYERS</p>
           <h1 class="main-title">BUILDING IMMERSIVE<br>EXPERIENCES</h1>
           <p class="description">
-            We're a new game development studio building<br>
-            immersive experiences for brands, artists, and<br>
+            We're a new game development studio building
+            immersive experiences for brands, artists, and
             communities.
           </p>
-          <button class="cta-button">WORK WITH US</button>
+          <CustomButton variant="primary" class="shimmer">WORK WITH US</CustomButton>
         </div>
 
+        <!--
         <div class="axolotl-illustration">
           <img src="./assets/axolotl.svg" alt="Large Blue Axolotl" class="large-axolotl-svg" />
         </div>
+        -->
       </div>
     </section>
 
@@ -35,21 +37,10 @@
       <div class="container">
         <h2 class="section-title">Our Services</h2>
         <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">🎮</div>
-            <h3>Game Development</h3>
-            <p>Custom Roblox experiences tailored to your vision</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">🎨</div>
-            <h3>Creative Design</h3>
-            <p>Stunning visuals and immersive environments</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">👥</div>
-            <h3>Community Building</h3>
-            <p>Features that foster engagement and growth</p>
-          </div>
+          <ServiceCard icon="🎮" title="Game Development"
+            description="Custom Roblox experiences tailored to your vision" />
+          <ServiceCard icon="🎨" title="Creative Design" description="Stunning visuals and immersive environments" />
+          <ServiceCard icon="👥" title="Community Building" description="Features that foster engagement and growth" />
         </div>
       </div>
     </section>
@@ -59,20 +50,13 @@
       <div class="container">
         <div class="about-content">
           <h2>About Smiling Axolotl</h2>
-          <p>We're a passionate team of Roblox developers who understand what makes games truly engaging. Our studio combines years of platform expertise with fresh creative perspectives to deliver exceptional immersive experiences.</p>
+          <p>We're a passionate team of Roblox developers who understand what makes games truly engaging. Our studio
+            combines years of platform expertise with fresh creative perspectives to deliver exceptional immersive
+            experiences.</p>
           <div class="stats">
-            <div class="stat">
-              <span class="stat-number">50+</span>
-              <span class="stat-label">Projects</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number">2M+</span>
-              <span class="stat-label">Players</span>
-            </div>
-            <div class="stat">
-              <span class="stat-number">3</span>
-              <span class="stat-label">Years</span>
-            </div>
+            <StatItem number="50+" label="Projects" />
+            <StatItem number="2M+" label="Players" />
+            <StatItem number="3" label="Years" />
           </div>
         </div>
       </div>
@@ -84,8 +68,8 @@
         <h2>Ready to Build Something Amazing?</h2>
         <p>Let's discuss your project and create an experience your audience will love.</p>
         <div class="contact-buttons">
-          <button class="contact-btn primary">Get Started</button>
-          <button class="contact-btn secondary">View Portfolio</button>
+          <CustomButton variant="primary">Get Started</CustomButton>
+          <CustomButton variant="secondary">View Portfolio</CustomButton>
         </div>
       </div>
     </section>
@@ -93,8 +77,17 @@
 </template>
 
 <script>
+import CustomButton from './components/CustomButton.vue';
+import StatItem from './components/StatItem.vue';
+import ServiceCard from './components/ServiceCard.vue';
+
 export default {
   name: 'App',
+  components: {
+    CustomButton,
+    StatItem,
+    ServiceCard,
+  },
   mounted() {
     this.initSmoothScrolling();
   },
