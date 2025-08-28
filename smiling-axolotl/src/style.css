@@ -1,271 +1,272 @@
-/* Google Fonts Import */
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Dela+Gothic+One&family=Poppins:wght@300;400;500;600;700&display=swap");
 
-/* Reset and Base Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.6;
-  color: #333;
-  overflow-x: hidden;
+	font-family: "Poppins", sans-serif;
+	line-height: 1.6;
+	color: #333;
+	overflow-x: hidden;
 }
 
 .hero-section {
-  height: calc(100vh - 80px);
-  background: #f5f5f5;
-  position: relative;
-  overflow: hidden;
+	background: #f5f5f5;
+	position: relative;
+	overflow: hidden;
+	min-height: 100vh; /* Give it a minimum height */
+	padding-top: 2rem;
 }
 
-.blue-top-section {
-  width: 100%;
-  background: #2898ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
+.white-section {
+	background: white;
+	min-height: 80vh;
+	border-radius: 0 0 0 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4rem 0;
 }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.axolotl-logo-svg {
-  width: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  pointer-events: none
-}
-
-.logo-svg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.logo-text {
-  font-family: "Rubik Mono One", monospace;
-  font-size: 1.3rem;
-  color: white;
-  text-align: center;
-  font-weight: normal;
-  line-height: 1.1;
-  user-select: none;
-}
-
-.white-curved-section {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  min-height: 85vh;
-  border-radius: 0 0 0 0;
-  /*
-    clip-path: ellipse(100% 100% at 50% 100%);
-    padding: 0 10%;
-  */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Main content exactly positioned like in the image */
 .main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 2rem 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 0 auto;
+	max-width: 600px;
+	padding: 2rem 1rem;
+	position: relative;
+	z-index: 2; /* Above axolotl illustration */
 }
 
 .tagline {
-  font-family: "Dela Gothic One", cursive;
-  font-size: 1rem;
-  color: #999;
-  word-spacing: 5px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  line-height: 1;
+	font-family: "Dela Gothic One", cursive;
+	font-size: 1rem;
+	color: #999;
+	word-spacing: 5px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-bottom: 0.5rem;
+	line-height: 1;
 }
 
 .main-title {
-  font-family: "Dela Gothic One", cursive;
-  font-size: 3.5rem;
-  color: #2898ff;
-  line-height: 1.1;
-  margin-bottom: 2rem;
-  font-weight: normal;
+	font-family: "Dela Gothic One", cursive;
+	font-size: 3.5rem;
+	color: #2898ff;
+	line-height: 1.1;
+	margin-bottom: 2rem;
+	font-weight: normal;
 }
 
 .description {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.1rem;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 3rem;
+	font-family: "Poppins", sans-serif;
+	font-size: 1.1rem;
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 3rem;
 }
 
-/* Large axolotl illustration - positioned exactly like in the image */
 .axolotl-illustration {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -8rem;
-  margin-right: 5%;
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1; /* Behind main content */
+	pointer-events: none; /* Don't interfere with interactions */
 }
 
 .large-axolotl-svg {
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 30px rgba(40, 152, 255, 0.2));
+	width: 300px;
+	height: 300px;
+	object-fit: contain;
+	filter: drop-shadow(0 10px 30px rgba(40, 152, 255, 0.2));
 }
 
 /* Additional sections */
 .services-section {
-  padding: 6rem 0;
-  background: white;
+	padding: 6rem 0;
+	background: white;
 }
 
 .about-section {
-  padding: 6rem 0;
-  background: #f8f9fa;
+	padding: 6rem 0;
+	background: #f8f9fa;
 }
 
 .contact-section {
-  padding: 6rem 0;
-  background: #2898ff;
-  color: white;
-  text-align: center;
+	padding: 6rem 0;
+	background: #2898ff;
+	color: white;
+	text-align: center;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 2rem;
 }
 
 .section-title {
-  font-family: "Dela Gothic One", cursive;
-  font-size: 2.5rem;
-  color: #2898ff;
-  text-align: center;
-  margin-bottom: 3rem;
+	font-family: "Dela Gothic One", cursive;
+	font-size: 2.5rem;
+	color: #2898ff;
+	text-align: center;
+	margin-bottom: 3rem;
 }
 
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 2rem;
+	margin-top: 2rem;
 }
 
 .about-content h2 {
-  font-family: "Dela Gothic One", cursive;
-  font-size: 2.5rem;
-  color: #2898ff;
-  margin-bottom: 2rem;
+	font-family: "Dela Gothic One", cursive;
+	font-size: 2.5rem;
+	color: #2898ff;
+	margin-bottom: 2rem;
+	text-align: center;
 }
 
 .about-content p {
-  font-size: 1.1rem;
-  color: #666;
-  line-height: 1.7;
-  margin-bottom: 3rem;
+	font-size: 1.1rem;
+	color: #666;
+	line-height: 1.7;
+	margin-bottom: 3rem;
 }
 
 .stats {
-  display: flex;
-  gap: 3rem;
-  justify-content: center;
+	display: flex;
+	gap: 3rem;
+	justify-content: center;
 }
 
 .contact-section h2 {
-  font-family: "Dela Gothic One", cursive;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+	font-family: "Dela Gothic One", cursive;
+	font-size: 2.5rem;
+	margin-bottom: 1.5rem;
 }
 
 .contact-section p {
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
-  opacity: 0.9;
+	font-size: 1.2rem;
+	margin-bottom: 3rem;
+	opacity: 0.9;
 }
 
 .contact-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
-.waves-divider_top {
-  top: -1px;
-  transform: scaleX(1.5) rotate(180deg);
+/* Animacion de olas */
+.waves-top {
+	position: absolute;
+	top: -150px;
+	left: 0;
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	z-index: 1;
 }
 
-.waves-divider {
-  left: 0;
-  max-height: 75px;
-  position: absolute;
-  width: 100%;
+.wave-container {
+	display: flex;
+	width: 200%;
+	height: 100%;
+	animation: wave-scroll 8s linear infinite;
 }
 
-.waves-divider svg.wave {
-  color: #2898ff;
-  display: block;
-  overflow: hidden;
-  transform-origin: 0 0;
+.wave-svg {
+	flex: 0 0 50%;
+	width: 50%;
+	height: 100%;
+	display: block;
 }
 
-.waves-divider_top .wave-animation {
-  animation: wave-animation 2s infinite linear;
+.wave-1,
+.wave-2 {
+	min-width: 50%;
 }
 
-@keyframes wave-animation {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-40%);
-  }
+.wave-path {
+	animation: none;
 }
 
-/* Responsive Design */
+@keyframes wave-scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+/* Contact Section */
+.contact-section {
+	background: #2898ff;
+	position: relative;
+	padding: 100px 0 60px;
+	color: white;
+	text-align: center;
+}
+
+.contact-section h2 {
+	font-family: "Dela Gothic One", cursive;
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+}
+
+.contact-section p {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	opacity: 0.9;
+}
+
+/* Footer Section */
+.footer-section {
+	background: #2898ff;
+	padding: 20px 0;
+}
+
+.footer-content {
+	text-align: center;
+	color: white;
+	font-size: 0.9rem;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .main-content {
-    max-width: 95%;
-  }
+	.main-content {
+		max-width: 95%;
+	}
 
-  .main-title {
-    font-size: 2.5rem;
-  }
+	.main-title {
+		font-size: 2.5rem;
+	}
 
-  .axolotl-illustration {
-    display: none;
-  }
+	.axolotl-illustration {
+		display: none;
+	}
 
-  .stats {
-    flex-direction: column;
-    gap: 1rem;
-  }
+	.stats {
+		flex-direction: column;
+		gap: 1rem;
+	}
 
-  .contact-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
+	.contact-buttons {
+		flex-direction: column;
+		align-items: center;
+	}
 }
