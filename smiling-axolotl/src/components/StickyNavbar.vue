@@ -1,37 +1,22 @@
 <template>
   <div class="navbar-wrapper">
-    <div 
-      ref="navbar" 
-      class="sticky-navbar" 
-      :class="{ 'is-sticky': isSticky }"
-    >
+    <div ref="navbar" class="sticky-navbar" :class="{ 'is-sticky': isSticky }">
       <div class="navbar-content">
         <div class="axolotl-logo-svg">
           <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" />
         </div>
         <h1 class="logo-text">SMILING<br>AXOLOTL</h1>
       </div>
-      
+
       <!-- La curva -->
       <div class="navbar-curve" :class="{ 'flattened': isSticky }">
-        <svg
-          class="curve-svg"
-          viewBox="0 0 1440 200"
-          preserveAspectRatio="none"
-        >
-          <path
-            ref="curvePath"
-            d="M0,0 L1440,0 L1440,50 Q720,0 0,50 Z"
-            fill="#2898ff"
-          />
+        <svg class="curve-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+          <path ref="curvePath" d="M0,0 L1440,0 L1440,50 Q720,0 0,50 Z" fill="#2898ff" />
         </svg>
       </div>
     </div>
-    
-    <div 
-      class="navbar-spacer" 
-      :class="{ 'active': isSticky }"
-    ></div>
+
+    <div class="navbar-spacer" :class="{ 'active': isSticky }"></div>
   </div>
 </template>
 
@@ -54,7 +39,7 @@ export default {
   methods: {
     initScrollListener() {
       let ticking = false;
-      
+
       this.handleScroll = () => {
         if (!ticking) {
           requestAnimationFrame(() => {
@@ -64,39 +49,39 @@ export default {
           ticking = true;
         }
       };
-      
+
       window.addEventListener('scroll', this.handleScroll, { passive: true });
       this.updateNavbar();
     },
-    
+
     updateNavbar() {
       this.scrollY = window.scrollY;
       const transitionMaxScroll = 1000;
       const curveMaxScroll = 250;
-      
+
       const navbarProgress = Math.min(this.scrollY / transitionMaxScroll, 1);
       const navbarEaseProgress = this.easeOutQuart(navbarProgress);
-      
-      this.isSticky = this.scrollY > 10; 
-      
+
+      this.isSticky = this.scrollY > 10;
+
       if (this.$refs.navbar) {
         const navbar = this.$refs.navbar;
-       
+
         const currentHeight = 100 - (navbarEaseProgress * 30);
         navbar.style.height = `${currentHeight}px`;
       }
-      
+
       if (this.$refs.curvePath) {
         const scrollProgress = Math.min(this.scrollY / curveMaxScroll, 1);
         const easeProgress = this.easeOutQuart(scrollProgress);
-        
+
         const sideHeight = 50 - (easeProgress * 30);
-        const curveDepth = 0 + (easeProgress * 35); 
-        
+        const curveDepth = 0 + (easeProgress * 35);
+
         const newPath = `M0,0 L1440,0 L1440,${sideHeight} Q720,${curveDepth} 0,${sideHeight} Z`;
         this.$refs.curvePath.setAttribute('d', newPath);
       }
-      
+
       if (this.$refs.navbar) {
         const spacer = document.querySelector('.navbar-spacer');
         if (spacer) {
@@ -105,7 +90,7 @@ export default {
         }
       }
     },
-    
+
     easeOutQuart(t) {
       return 1 - Math.pow(1 - t, 4);
     }
@@ -125,7 +110,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px; 
+  height: 100px;
   position: relative;
   z-index: 1000;
 }
@@ -179,7 +164,7 @@ export default {
   overflow: hidden;
   transform: translateY(100%);
   z-index: 1001;
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .curve-svg {

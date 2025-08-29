@@ -1,272 +1,424 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Dela+Gothic+One&family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-	font-family: "Poppins", sans-serif;
-	line-height: 1.6;
-	color: #333;
-	overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  overflow-x: hidden;
 }
 
 .hero-section {
-	background: #f5f5f5;
-	position: relative;
-	overflow: hidden;
-	min-height: 100vh; 
-	padding-top: 2rem;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 100px);
 }
 
 .white-section {
-	background: white;
-	min-height: 80vh;
-	border-radius: 0 0 0 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 4rem 0;
+  background: white;
+  min-height: 80vh;
+  border-radius: 0 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	margin: 0 auto;
-	max-width: 600px;
-	padding: 2rem 1rem;
-	position: relative;
-	z-index: 2; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 2rem 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .tagline {
-	font-family: "Dela Gothic One", cursive;
-	font-size: 1rem;
-	color: #999;
-	word-spacing: 5px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	margin-bottom: 0.5rem;
-	line-height: 1;
+  font-family: "Dela Gothic One", cursive;
+  font-size: 1rem;
+  color: #999;
+  word-spacing: 5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  line-height: 1;
 }
 
 .main-title {
-	font-family: "Dela Gothic One", cursive;
-	font-size: 3.5rem;
-	color: #2898ff;
-	line-height: 1.1;
-	margin-bottom: 2rem;
-	font-weight: normal;
+  font-family: "Dela Gothic One", cursive;
+  font-size: 3.5rem;
+  color: #2898ff;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  font-weight: normal;
 }
 
 .description {
-	font-family: "Poppins", sans-serif;
-	font-size: 1.1rem;
-	color: #666;
-	line-height: 1.6;
-	margin-bottom: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  line-height: 1.6;
+  margin-bottom: 3rem;
 }
 
 .axolotl-illustration {
-	position: absolute;
-	right: 5%;
-	top: 50%;
-	transform: translateY(-50%);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 1;
-	pointer-events: none;
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .large-axolotl-svg {
-	width: 300px;
-	height: 300px;
-	object-fit: contain;
-	filter: drop-shadow(0 10px 30px rgba(40, 152, 255, 0.2));
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(40, 152, 255, 0.2));
 }
 
 /* Additional sections */
 .services-section {
-	padding: 6rem 0;
-	background: white;
+  padding: 6rem 0;
+  background: white;
 }
 
 .about-section {
-	padding: 6rem 0;
-	background: #f8f9fa;
+  padding: 6rem 0;
+  background: #f8f9fa;
 }
 
 .contact-section {
-	padding: 6rem 0;
-	background: #2898ff;
-	color: white;
-	text-align: center;
+  padding: 6rem 0;
+  background: #2898ff;
+  color: white;
+  text-align: center;
 }
 
 .container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .section-title {
-	font-family: "Dela Gothic One", cursive;
-	font-size: 2.5rem;
-	color: #2898ff;
-	text-align: center;
-	margin-bottom: 3rem;
+  font-family: "Dela Gothic One", cursive;
+  font-size: 2.5rem;
+  color: #2898ff;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .services-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 2rem;
-	margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .about-content h2 {
-	font-family: "Dela Gothic One", cursive;
-	font-size: 2.5rem;
-	color: #2898ff;
-	margin-bottom: 2rem;
-	text-align: center;
+  font-family: "Dela Gothic One", cursive;
+  font-size: 2.5rem;
+  color: #2898ff;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .about-content p {
-	font-size: 1.1rem;
-	color: #666;
-	line-height: 1.7;
-	margin-bottom: 3rem;
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 3rem;
 }
 
 .stats {
-	display: flex;
-	gap: 3rem;
-	justify-content: center;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
 }
 
 .contact-section h2 {
-	font-family: "Dela Gothic One", cursive;
-	font-size: 2.5rem;
-	margin-bottom: 1.5rem;
+  font-family: "Dela Gothic One", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .contact-section p {
-	font-size: 1.2rem;
-	margin-bottom: 3rem;
-	opacity: 0.9;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
 }
 
 .contact-buttons {
-	display: flex;
-	gap: 1rem;
-	justify-content: center;
-	flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* Animacion de olas */
 .waves-top {
-	position: absolute;
-	top: -150px;
-	left: 0;
-	width: 100%;
-	height: 200px;
-	overflow: hidden;
-	z-index: 1;
+  position: absolute;
+  top: -150px;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .wave-container {
-	display: flex;
-	width: 200%;
-	height: 100%;
-	animation: wave-scroll 8s linear infinite;
+  display: flex;
+  width: 200%;
+  height: 100%;
+  animation: wave-scroll 8s linear infinite;
 }
 
 .wave-svg {
-	flex: 0 0 50%;
-	width: 50%;
-	height: 100%;
-	display: block;
+  flex: 0 0 50%;
+  width: 50%;
+  height: 100%;
+  display: block;
 }
 
 .wave-1,
 .wave-2 {
-	min-width: 50%;
+  min-width: 50%;
 }
 
 .wave-path {
-	animation: none;
+  animation: none;
 }
 
 @keyframes wave-scroll {
-	0% {
-		transform: translateX(0);
-	}
-	100% {
-		transform: translateX(-50%);
-	}
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Contact Section */
 .contact-section {
-	background: #2898ff;
-	position: relative;
-	padding: 100px 0 60px;
-	color: white;
-	text-align: center;
+  background: #2898ff;
+  position: relative;
+  padding: 100px 0 60px;
+  color: white;
+  text-align: center;
 }
 
 .contact-section h2 {
-	font-family: "Dela Gothic One", cursive;
-	font-size: 2.5rem;
-	margin-bottom: 1rem;
+  font-family: "Dela Gothic One", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .contact-section p {
-	font-size: 1.2rem;
-	margin-bottom: 2rem;
-	opacity: 0.9;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
 }
 
 /* Footer Section */
 .footer-section {
-	background: #2898ff;
-	padding: 20px 0;
+  background: #2898ff;
+  padding: 20px 0;
 }
 
 .footer-content {
-	text-align: center;
-	color: white;
-	font-size: 0.9rem;
+  text-align: center;
+  color: white;
+  font-size: 0.9rem;
 }
 
-/* Responsive */
+/* Aquatic Plants */
+.aquatic-plants {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 40vh;
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+.aquatic-plants img.left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 80%;
+  width: auto;
+  transform: none;
+}
+
+.aquatic-plants img.right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  transform: none;
+}
+
+/* Partners Section */
+.partners-section {
+  background: #2898ff;
+  padding: 2.5rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.partners-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(40, 152, 255, 0.05);
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.partners-title {
+  font-family: "Dela Gothic One", cursive;
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.partners-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem 3rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.inline-logo {
+  display: inline-flex;
+  vertical-align: middle;
+  height: 1em;
+  width: auto;
+  margin: 0 0.15em;
+}
+
+.inline-logo img {
+  display: block;
+  height: 100%;
+  fill: currentColor;
+}
+
+.hover-glowing-text {
+  transition: text-shadow 0.4s ease, color 0.3s ease;
+}
+
+.hover-glowing-text:hover {
+  color: #2898ff;
+  text-shadow: 0 0 25px #2897ff50;
+}
+
+/* Blue Banner Section */
+.blue-banner-section {
+  background: #2898ff;
+  color: #fff;
+  width: 100vw;
+  min-height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0 2rem 0;
+}
+
+.blue-banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.blue-banner-title {
+  text-transform: uppercase;
+  font-family: "Dela Gothic One", cursive;
+  font-size: 8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+	line-height: 0.9;
+margin-bottom: 1.5rem;
+
+  text-align: center;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.12);
+}
+
+.blue-banner-list {
+margin: 0 5vw;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: #fff;
+  opacity: .85;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+.blue-banner-list b {
+  color:#1a1a1a
+}
+
 @media (max-width: 768px) {
-	.main-content {
-		max-width: 95%;
-	}
+  .main-content {
+    max-width: 95%;
+  }
 
-	.main-title {
-		font-size: 2.5rem;
-	}
+  .main-title {
+    font-size: 2.5rem;
+  }
 
-	.axolotl-illustration {
-		display: none;
-	}
+  .stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-	.stats {
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.contact-buttons {
-		flex-direction: column;
-		align-items: center;
-	}
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 }
+
+@media (max-width: 950px) {
+  .aquatic-plants {
+    height: 32vh;
+  }
+  .aquatic-plants img.left {
+    transform: translateX(calc(-35vw));
+  }
+  .aquatic-plants img.right {
+    transform: translateX(calc(35vw));
+  }
+}
+
+@media (max-width: 1300px) {
+  .axolotl-illustration {
+    display: none;
+  }
+}
+
