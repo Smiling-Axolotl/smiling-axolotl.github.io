@@ -33,30 +33,23 @@ export default {
       
       this.bubbles.push(bubble);
       
-      // Remove bubble after animation completes
       setTimeout(() => {
         this.removeBubble(bubble.id);
-      }, 8000); // 8s animation duration + buffer
+      }, 8000); 
     },
 
     generateBubbleStyle() {
-      // Random size between 4px and 20px
       const size = Math.random() * 16 + 4;
       
-      // Random horizontal position
       const leftPosition = Math.random() * 100;
       
-      // Random animation duration between 6-10 seconds
       const duration = Math.random() * 4 + 6;
-      
-      // Random delay before starting
+    
       const delay = Math.random() * 2;
       
-      // Random opacity between 0.3 and 0.8
       const opacity = Math.random() * 0.5 + 0.3;
       
-      // Slight horizontal drift
-      const drift = (Math.random() - 0.5) * 50; // -25px to +25px
+      const drift = (Math.random() - 0.5) * 50;
       
       return {
         width: `${size}px`,
@@ -77,16 +70,13 @@ export default {
     },
 
     startBubbleAnimation() {
-      // Create initial bubbles
       for (let i = 0; i < 3; i++) {
         setTimeout(() => {
           this.createBubble();
         }, i * 1000);
       }
       
-      // Create new bubbles periodically
       this.bubbleInterval = setInterval(() => {
-        // Random chance to create 1-2 bubbles
         const bubbleCount = Math.random() > 0.7 ? 2 : 1;
         for (let i = 0; i < bubbleCount; i++) {
           setTimeout(() => {
@@ -152,7 +142,6 @@ export default {
   }
 }
 
-/* Add some variety with different bubble types */
 .bubble:nth-child(3n) {
   background: linear-gradient(135deg, rgba(173, 216, 230, 0.6), rgba(40, 152, 255, 0.4));
   animation-timing-function: ease-in-out;

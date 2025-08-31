@@ -17,7 +17,7 @@ body {
   background: linear-gradient(180deg, rgba(173, 216, 230, 0.1) 0%, rgba(255, 255, 255, 1) 40%);
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 70px); /* Adjusted for smaller navbar */
 }
 
 .white-section {
@@ -35,7 +35,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 0 auto;
+  margin: 3rem auto 0; /* Added top margin to avoid navbar collision */
   max-width: 600px;
   padding: 2rem 1rem;
   position: relative;
@@ -89,10 +89,88 @@ body {
   filter: drop-shadow(0 10px 30px rgba(40, 152, 255, 0.2));
 }
 
-/* Additional sections */
-.services-section {
-  padding: 6rem 0;
-  background: white;
+/* Grow Your Brand Section */
+.grow-brand-section {
+  background: #f5f5f5;
+  padding: 4rem 0;
+  width: 100%;
+}
+
+.grow-brand-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.grow-brand-title {
+  font-family: "Dela Gothic One", cursive;
+  font-size: 3rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.brand-highlight {
+  color: #2898ff;
+}
+
+.grow-brand-subtitle {
+  font-family: "Dela Gothic One", cursive;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.brand-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: #e8e8e8;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  min-width: 220px;
+  text-align: center;
+  position: relative;
+}
+
+.stat-number {
+  font-family: "Dela Gothic One", cursive;
+  font-size: 3.5rem;
+  color: #2898ff;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-family: "Dela Gothic One", cursive;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.info-icon {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 0.25rem;
+}
+
+.stat-note {
+  font-family: "Dela Gothic One", cursive;
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .about-section {
@@ -111,21 +189,6 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-}
-
-.section-title {
-  font-family: "Dela Gothic One", cursive;
-  font-size: 2.5rem;
-  color: #2898ff;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
 }
 
 .about-content h2 {
@@ -211,37 +274,317 @@ body {
   }
 }
 
-/* Contact Section */
-.contact-section {
-  background: #2898ff;
-  position: relative;
-  padding: 100px 0 60px;
-  color: white;
-  text-align: center;
-}
-
-.contact-section h2 {
-  font-family: "Dela Gothic One", cursive;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.contact-section p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-
 /* Footer Section */
 .footer-section {
+  background: #f8f9fa; /* Match the site's off-white background */
+  position: relative;
+  padding: 80px 0 1rem 0; /* Reasonable padding */
+  overflow: hidden;
+}
+
+/* Add blue background that starts below the waves */
+.footer-section::before {
+  content: '';
+  position: absolute;
+  top: 50px; /* Start below where waves end */
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: #2898ff;
-  padding: 20px 0;
+  z-index: 5;
+}
+
+.footer-section .waves-top {
+  position: absolute;
+  top: -50px; /* Much closer to the footer content */
+  left: 0;
+  width: 100%;
+  height: 150px; /* More reasonable height */
+  overflow: hidden;
+  z-index: 10; /* Higher z-index to ensure visibility */
 }
 
 .footer-content {
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
   color: white;
+  position: relative;
+  z-index: 20; /* Above the waves */
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-title {
+  font-family: "Dela Gothic One", cursive;
+  font-size: 3.5rem;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  animation: titleFloat 8s ease-in-out infinite;
+}
+
+.footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-btn {
+  background: white !important;
+  color: #2898ff !important;
+  border: 2px solid white !important;
+  padding: 0.8rem 2rem !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+}
+
+.contact-btn:hover {
+  background: transparent !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+.email-icon {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.email-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.footer-right {
+  flex: 0 0 auto;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.social-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-width: 200px;
+  position: relative;
+  animation: socialCardFloat 7s ease-in-out infinite;
+}
+
+.social-section::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.social-title {
+  font-family: "Dela Gothic One", cursive;
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: normal;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.social-link.twitter:hover {
+  background: #1da1f2;
+  color: white;
+}
+
+.social-link.linkedin:hover {
+  background: #0077b5;
+  color: white;
+}
+
+.social-link.roblox:hover {
+  background: #00a2ff;
+  color: white;
+}
+
+.copyright-bottom-right {
   font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+  color: white;
+  text-align: right;
+  margin-top: auto;
+}
+
+/* Footer Floating Animations */
+.floating-element-slow {
+  animation: waterFloat1 6s ease-in-out infinite;
+}
+
+.floating-element-medium {
+  animation: waterFloat2 4.5s ease-in-out infinite;
+}
+
+.floating-element-fast {
+  animation: waterFloat3 3.5s ease-in-out infinite;
+}
+
+.floating-icon-1 {
+  animation: floatingIcon1 4s ease-in-out infinite;
+}
+
+.floating-icon-2 {
+  animation: floatingIcon2 5s ease-in-out infinite 0.5s;
+}
+
+.floating-icon-3 {
+  animation: floatingIcon3 3.8s ease-in-out infinite 1s;
+}
+
+@keyframes waterFloat1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-12px) rotate(-0.3deg);
+  }
+}
+
+@keyframes waterFloat2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-6px) rotate(-0.4deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(0.2deg);
+  }
+}
+
+@keyframes waterFloat3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-5px) rotate(0.3deg);
+  }
+  70% {
+    transform: translateY(-8px) rotate(-0.2deg);
+  }
+}
+
+@keyframes floatingIcon1 {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.05);
+  }
+}
+
+@keyframes floatingIcon2 {
+  0%, 100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+  }
+  40% {
+    transform: translateY(-6px) scale(1.03) rotate(1deg);
+  }
+  80% {
+    transform: translateY(-2px) scale(1.01) rotate(-0.5deg);
+  }
+}
+
+@keyframes floatingIcon3 {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-3px) scale(1.02);
+  }
+  75% {
+    transform: translateY(-7px) scale(1.04);
+  }
+}
+
+@keyframes socialCardFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) rotate(0.3deg);
+  }
+  66% {
+    transform: translateY(-4px) rotate(-0.2deg);
+  }
+}
+
+@keyframes titleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-6px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
 }
 
 /* Aquatic Plants */
@@ -304,62 +647,75 @@ body {
 
 @keyframes gentleSwayLeft {
   0%, 100% {
-    transform: translateX(calc(-35vw)) rotate(0deg);
+    transform: translateX(calc(-25vw)) rotate(0deg);
   }
   25% {
-    transform: translateX(calc(-35vw)) rotate(1deg);
+    transform: translateX(calc(-25vw)) rotate(1deg);
   }
   75% {
-    transform: translateX(calc(-35vw)) rotate(-1deg);
+    transform: translateX(calc(-25vw)) rotate(-1deg);
   }
 }
 
 @keyframes gentleSwayRight {
   0%, 100% {
-    transform: translateX(calc(35vw)) rotate(0deg);
+    transform: translateX(calc(25vw)) rotate(0deg);
   }
   25% {
-    transform: translateX(calc(35vw)) rotate(-1deg);
+    transform: translateX(calc(25vw)) rotate(-1deg);
   }
   75% {
-    transform: translateX(calc(35vw)) rotate(1deg);
+    transform: translateX(calc(25vw)) rotate(1deg);
   }
 }
 
-/* Partners Section */
-.partners-section {
+/* Strategic Partners & Alliances Section */
+.strategic-section {
   background: #2898ff;
-  padding: 2.5rem 0;
+  padding: 3rem 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
-.partners-container {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(40, 152, 255, 0.05);
-  padding: 2rem 1rem;
+
+.strategic-container {
   max-width: 1200px;
-  width: 95%;
+  margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 2rem;
 }
-.partners-title {
+
+.strategic-partners-card,
+.experience-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.strategic-title,
+.experience-title {
   font-family: "Dela Gothic One", cursive;
-  font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #1a1a1a;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
-.partners-logos {
+
+.strategic-partners-logos,
+.experience-logos {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem 3rem;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.creating-madness-logo {
+  height: 60px;
+  width: auto;
 }
 
 .inline-logo {
@@ -390,48 +746,99 @@ body {
   background: #2898ff;
   color: #fff;
   width: 100vw;
-  min-height: 30vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 0 2rem 0;
+  padding: 3rem 0;
+  overflow: hidden;
 }
 
-.blue-banner-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.blue-banner-container {
   width: 100%;
+  text-align: center;
 }
 
 .blue-banner-title {
   text-transform: uppercase;
   font-family: "Dela Gothic One", cursive;
-  font-size: 8rem;
+  font-size: 6rem;
   font-weight: bold;
   letter-spacing: 2px;
-	line-height: 0.9;
-margin-bottom: 1.5rem;
-
+  line-height: 0.9;
+  margin-bottom: 2rem;
   text-align: center;
   text-shadow: 0 2px 16px rgba(0,0,0,0.12);
 }
 
-.blue-banner-list {
-margin: 0 5vw;
-  justify-content: center;
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 2rem;
-  color: #fff;
-  opacity: .85;
-  white-space: pre-wrap;
-  text-align: center;
+.marquee-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  overflow: hidden;
 }
 
-.blue-banner-list b {
-  color:#1a1a1a
+.marquee-line {
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 4rem;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.9;
+  line-height: 1;
+  width: max-content;
+}
+
+.marquee-right .marquee-content {
+  animation: scrollRightContinuous 30s linear infinite;
+}
+
+.marquee-left .marquee-content {
+  animation: scrollLeftContinuous 35s linear infinite;
+}
+
+.phrase-normal {
+  font-weight: 400;
+}
+
+.phrase-bold {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.phrase-italic {
+  font-style: italic;
+  font-weight: 500;
+}
+
+@keyframes scrollRightContinuous {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollLeftContinuous {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 768px) {
@@ -452,64 +859,232 @@ margin: 0 5vw;
     flex-direction: column;
     align-items: center;
   }
+  
+  /* Grow Your Brand responsive */
+  .grow-brand-title {
+    font-size: 2.5rem;
+  }
+  
+  .grow-brand-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .brand-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-card {
+    min-width: 280px;
+    max-width: 320px;
+  }
+  
+  /* Strategic section responsive */
+  .strategic-container {
+    padding: 0 1rem;
+  }
+  
+  .strategic-partners-logos,
+  .experience-logos {
+    gap: 2rem;
+  }
+  
+  /* Footer responsive */
+  .footer-main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .footer-title {
+    font-size: 2.5rem;
+  }
+  
+  .footer-right {
+    margin-left: 0;
+    align-items: center;
+  }
+  
+  .social-section::before {
+    display: none;
+  }
+  
+  .footer-actions {
+    justify-content: center;
+  }
+  
+  .copyright-bottom-right {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  /* Blue banner responsive */
+  .blue-banner-title {
+    font-size: 4rem;
+  }
+  
+  .marquee-content {
+    font-size: 2.5rem;
+    gap: 3rem;
+  }
+  
+  .marquee-line {
+    height: 4rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .footer-main {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .footer-title {
+    font-size: 3rem;
+  }
+  
+  .footer-right {
+    margin-left: 0;
+    align-items: center;
+  }
+  
+  .social-section::before {
+    display: none;
+  }
+  
+  .copyright-bottom-right {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  /* Blue banner responsive */
+  .blue-banner-title {
+    font-size: 5rem;
+  }
+  
+  .marquee-content {
+    font-size: 3rem;
+    gap: 3.5rem;
+  }
+  
+  .marquee-line {
+    height: 5rem;
+  }
 }
 
 @media (max-width: 950px) {
   .aquatic-plants {
-    height: 32vh;
+    height: 35vh; /* Increased height for better visibility */
   }
   .aquatic-plants img.left {
-    transform: translateX(calc(-35vw));
-    bottom: -3vh; /* Adjust for smaller screens */
-    height: 75%;
+    transform: translateX(calc(-25vw)); /* Less aggressive horizontal movement */
+    bottom: -3vh;
+    height: 80%; /* Increased height */
+    animation: gentleSwayLeft 4s ease-in-out infinite;
   }
   .aquatic-plants img.right {
-    transform: translateX(calc(35vw));
-    bottom: -3vh; /* Adjust for smaller screens */
-    height: 90%;
+    transform: translateX(calc(25vw)); /* Less aggressive horizontal movement */
+    bottom: -3vh;
+    height: 95%; /* Increased height */
+    animation: gentleSwayRight 5s ease-in-out infinite;
   }
 }
 
 /* Add additional responsive rules for very small screens */
 @media (max-width: 600px) {
   .aquatic-plants {
-    height: 25vh;
+    height: 30vh; /* Increased from 25vh */
   }
   .aquatic-plants img.left {
-    transform: translateX(calc(-40vw));
+    transform: translateX(calc(-20vw)); /* Much less aggressive movement */
     bottom: -2vh;
-    height: 60%;
+    height: 70%; /* Increased height */
     animation: gentleSwaySmallLeft 4s ease-in-out infinite;
   }
   .aquatic-plants img.right {
-    transform: translateX(calc(40vw));
+    transform: translateX(calc(20vw)); /* Much less aggressive movement */
     bottom: -2vh;
-    height: 70%;
+    height: 80%; /* Increased height */
     animation: gentleSwaySmallRight 5s ease-in-out infinite;
+  }
+  
+  /* Grow Your Brand mobile responsive */
+  .grow-brand-title {
+    font-size: 2rem;
+  }
+  
+  .grow-brand-subtitle {
+    font-size: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
+  /* Strategic section mobile responsive */
+  .strategic-container {
+    padding: 0 1rem;
+  }
+  
+  .strategic-partners-card,
+  .experience-card {
+    padding: 1.5rem;
+  }
+  
+  .strategic-title,
+  .experience-title {
+    font-size: 1.1rem;
+  }
+  
+  .strategic-partners-logos,
+  .experience-logos {
+    gap: 1.5rem;
+    flex-direction: column;
+  }
+  
+  /* Blue banner mobile responsive */
+  .blue-banner-title {
+    font-size: 2.5rem;
+  }
+  
+  .marquee-content {
+    font-size: 1.5rem;
+    gap: 2rem;
+  }
+  
+  .marquee-line {
+    height: 3rem;
   }
 }
 
 @keyframes gentleSwaySmallLeft {
   0%, 100% {
-    transform: translateX(calc(-40vw)) rotate(0deg);
+    transform: translateX(calc(-20vw)) rotate(0deg);
   }
   25% {
-    transform: translateX(calc(-40vw)) rotate(1deg);
+    transform: translateX(calc(-20vw)) rotate(1deg);
   }
   75% {
-    transform: translateX(calc(-40vw)) rotate(-1deg);
+    transform: translateX(calc(-20vw)) rotate(-1deg);
   }
 }
 
 @keyframes gentleSwaySmallRight {
   0%, 100% {
-    transform: translateX(calc(40vw)) rotate(0deg);
+    transform: translateX(calc(20vw)) rotate(0deg);
   }
   25% {
-    transform: translateX(calc(40vw)) rotate(-1deg);
+    transform: translateX(calc(20vw)) rotate(-1deg);
   }
   75% {
-    transform: translateX(calc(40vw)) rotate(1deg);
+    transform: translateX(calc(20vw)) rotate(1deg);
   }
 }
 

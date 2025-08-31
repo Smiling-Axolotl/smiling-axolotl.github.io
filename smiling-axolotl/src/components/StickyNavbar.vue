@@ -67,7 +67,10 @@ export default {
       if (this.$refs.navbar) {
         const navbar = this.$refs.navbar;
 
-        const currentHeight = 100 - (navbarEaseProgress * 30);
+        // Start with smaller height (70px) when curve is complete, grow to 100px when flattened
+        const minHeight = 70; // Smaller height when curved
+        const maxHeight = 100; // Full height when flat
+        const currentHeight = minHeight + (navbarEaseProgress * (maxHeight - minHeight));
         navbar.style.height = `${currentHeight}px`;
       }
 
@@ -96,7 +99,10 @@ export default {
       if (this.$refs.navbar) {
         const spacer = document.querySelector('.navbar-spacer');
         if (spacer) {
-          const currentHeight = 100 - (navbarEaseProgress * 30);
+          // Match the navbar height calculation
+          const minHeight = 70;
+          const maxHeight = 100;
+          const currentHeight = minHeight + (navbarEaseProgress * (maxHeight - minHeight));
           spacer.style.height = this.isSticky ? `${currentHeight}px` : '0px';
         }
       }
@@ -126,7 +132,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  height: 70px; /* Start with smaller height when curved */
   position: relative;
   z-index: 1000;
 }
