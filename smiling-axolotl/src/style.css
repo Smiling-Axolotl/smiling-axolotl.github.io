@@ -107,7 +107,6 @@ body {
   font-family: "Dela Gothic One", cursive;
   font-size: 3rem;
   color: #1a1a1a;
-  margin-bottom: 0.5rem;
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -136,24 +135,23 @@ body {
   background: #e8e8e8;
   border-radius: 12px;
   padding: 2rem 1.5rem;
-  min-width: 220px;
+  width: 320px; /* Fixed width for all cards */
   text-align: center;
   position: relative;
+  box-sizing: border-box;
 }
 
 .stat-number {
   font-family: "Dela Gothic One", cursive;
   font-size: 3.5rem;
   color: #2898ff;
-  font-weight: 900;
   margin-bottom: 0.5rem;
 }
 
 .stat-label {
   font-family: "Dela Gothic One", cursive;
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   color: #1a1a1a;
-  font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
 }
@@ -166,9 +164,9 @@ body {
 
 .stat-note {
   font-family: "Dela Gothic One", cursive;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #666;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -387,11 +385,17 @@ body {
 
 .social-section {
   background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.5rem 2rem;
+  padding-left: calc(2rem + 18px);
   min-width: 200px;
   position: relative;
   animation: socialCardFloat 7s ease-in-out infinite;
+  
+  --m:
+    conic-gradient(from 45deg at left, #0000, #000 1deg 89deg, #0000 90deg) left/100% 39px repeat-y;
+
+  -webkit-mask: var(--m);
+  mask: var(--m);
 }
 
 .social-section::before {
@@ -413,6 +417,7 @@ body {
   color: #333;
   margin-bottom: 1rem;
   font-weight: normal;
+  text-align: center;
 }
 
 .social-icons {
@@ -674,12 +679,12 @@ body {
   background: #2898ff;
   padding: 3rem 0;
   width: 100%;
+  padding: 2rem;
 }
 
 .strategic-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -688,9 +693,25 @@ body {
 .strategic-partners-card,
 .experience-card {
   background: #fff;
-  border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.strategic-partners-card {
+  margin-right: 15rem;
+  --m:
+    conic-gradient(from -135deg at right, #0000,#000 1deg 89deg,#0000 90deg) right/100% 39px repeat-y;
+  
+  -webkit-mask: var(--m);
+  mask: var(--m);
+}
+
+.experience-card {
+  margin-left: 15rem;
+  --m:
+    conic-gradient(from 45deg at left, #0000, #000 1deg 89deg, #0000 90deg) left/100% 39px repeat-y;
+
+  -webkit-mask: var(--m);
+  mask: var(--m);
 }
 
 .strategic-title,
@@ -763,7 +784,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem 0;
+  padding: 3rem;
   overflow: hidden;
 }
 
@@ -787,7 +808,7 @@ body {
 .marquee-container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0rem;
   width: 100%;
   overflow: hidden;
 }
@@ -806,7 +827,7 @@ body {
   align-items: center;
   gap: 4rem;
   font-family: "Poppins", sans-serif;
-  font-size: 4rem;
+  font-size: 3.8rem;
   text-transform: uppercase;
   color: #fff;
   opacity: 0.9;
@@ -923,10 +944,6 @@ body {
     display: none;
   }
   
-  .footer-actions {
-    justify-content: center;
-  }
-  
   .copyright-bottom-right {
     text-align: center;
     margin-top: 1rem;
@@ -935,15 +952,6 @@ body {
   /* Blue banner responsive */
   .blue-banner-title {
     font-size: 4rem;
-  }
-  
-  .marquee-content {
-    font-size: 2.5rem;
-    gap: 3rem;
-  }
-  
-  .marquee-line {
-    height: 4rem;
   }
 }
 
@@ -962,6 +970,21 @@ body {
   .footer-right {
     margin-left: 0;
     align-items: center;
+  }
+  
+  .footer-actions {
+    justify-content: center;
+  }
+
+  .social-section {
+    --m2:
+      conic-gradient(from   45deg at left,  #0000,#000 1deg 89deg,#0000 90deg) left /51% 39px repeat-y,
+      conic-gradient(from -135deg at right, #0000,#000 1deg 89deg,#0000 90deg) right/51% 39px repeat-y;
+
+    -webkit-mask: var(--m2);
+    mask: var(--m2);
+
+    padding: 1.5rem calc(2rem + 18px);
   }
   
   .social-section::before {
@@ -1004,6 +1027,11 @@ body {
     height: 95%; /* Increased height */
     animation: gentleSwayRight 5s ease-in-out infinite;
   }
+
+  .strategic-partners-card,
+  .experience-card {
+    margin: 0;
+  }
 }
 
 /* Add additional responsive rules for very small screens */
@@ -1037,10 +1065,6 @@ body {
     font-size: 2.5rem;
   }
   
-  .stat-label {
-    font-size: 0.8rem;
-  }
-  
   /* Strategic section mobile responsive */
   .strategic-container {
     padding: 0 1rem;
@@ -1064,12 +1088,11 @@ body {
   
   /* Blue banner mobile responsive */
   .blue-banner-title {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
   
   .marquee-content {
-    font-size: 1.5rem;
-    gap: 2rem;
+    font-size: 1.8rem;
   }
   
   .marquee-line {

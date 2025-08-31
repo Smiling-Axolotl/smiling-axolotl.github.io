@@ -73,21 +73,22 @@
         <p class="grow-brand-subtitle">ON A PLATFORM WITH</p>
         
         <div class="brand-stats">
-          <div class="stat-card">
-            <div class="stat-number">111.8M</div>
-            <div class="stat-label">DAILY ACTIVE<br>USERS <span class="info-icon">ⓘ</span></div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-number">27.4B</div>
-            <div class="stat-label">ENGAGEMENT<br>HOURS <span class="info-icon">ⓘ</span></div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-number">$753K</div>
-            <div class="stat-label">AVG. YEARLY<br>REVENUE <span class="info-icon">ⓘ</span></div>
-            <div class="stat-note">(TOP 1,000 DEVS)</div>
-          </div>
+          <StatCard
+            number="111.8M"
+            label="DAILY ACTIVE<br>USERS"
+            source="Source: Roblox Investor Relations&nbsp;Q2 2025"
+          />
+          <StatCard
+            number="27.4B"
+            label="ENGAGEMENT<br>HOURS"
+            source="Source: Roblox Investor Relations&nbsp;Q2 2025"
+          />
+          <StatCard
+            number="$753K"
+            label="AVG. YEARLY<br>REVENUE"
+            note="(TOP 1,000 DEVS)"
+            source="Source: Roblox Developer Conference&nbsp;Earnings Report 2024"
+          />
         </div>
       </div>
     </section>
@@ -130,9 +131,9 @@
             combines years of platform expertise with fresh creative perspectives to deliver exceptional immersive
             experiences.</p>
           <div class="stats">
-            <StatItem number="50+" label="Projects" />
-            <StatItem number="2M+" label="Players" />
-            <StatItem number="3" label="Years" />
+            <StatItem number="..." label="Projects" />
+            <StatItem number="..." label="Players" />
+            <StatItem number="..." label="Years" />
           </div>
         </div>
       </div>
@@ -169,7 +170,7 @@
             <div class="social-section floating-element-medium">
               <h3 class="social-title">Our Socials</h3>
               <div class="social-icons">
-                <a href="https://x.com/SmilingAjolote" class="social-link twitter floating-icon-1">
+                <a href="https://x.com/smiling-axo" class="social-link twitter floating-icon-1">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
@@ -199,6 +200,7 @@
 <script>
 import CustomButton from './components/CustomButton.vue';
 import StatItem from './components/StatItem.vue';
+import StatCard from './components/StatCard.vue';
 import StickyNavbar from './components/StickyNavbar.vue';
 import SecondaryLogo from './components/SecondaryLogo.vue';
 import BubbleAnimation from './components/BubbleAnimation.vue';
@@ -216,7 +218,8 @@ export default {
   name: 'App',
   components: {
     CustomButton,
-    StatItem,
+  StatItem,
+  StatCard,
     StickyNavbar,
     SecondaryLogo,
     BubbleAnimation,

@@ -37,6 +37,7 @@ export default {
 }
 
 .tooltip-content {
+  all: revert;
     position: absolute;
     background: #222;
     color: #fff;
