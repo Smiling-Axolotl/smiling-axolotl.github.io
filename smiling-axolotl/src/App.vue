@@ -98,16 +98,24 @@
         <div class="strategic-partners-card">
           <h3 class="strategic-title">Strategic Partners & Alliances</h3>
           <div class="strategic-partners-logos">
-            <img :src="assets.astralLabsLogo" alt="Astral Labs" class="partner-logo" />
-            <img :src="assets.creatingMadnessLogo" alt="Creating Madness" class="creating-madness-logo" />
+            <Tooltip text="Astral Labs" position="bottom">
+              <img :src="assets.astralLabsLogo" alt="Astral Labs" class="partner-logo" />
+            </Tooltip>
+            <Tooltip text="Creating Madness" position="bottom">
+              <img :src="assets.creatingMadnessLogo" alt="Creating Madness" class="partner-logo" />
+            </Tooltip>
           </div>
         </div>
         
         <div class="experience-card">
           <h3 class="experience-title">Experience our team members bring</h3>
           <div class="experience-logos">
-            <img :src="assets.baobabLogo" alt="Baobab Studios" class="partner-logo" />
-            <img :src="assets.secondChanceLogo" alt="Second Chance Productions LLC" class="partner-logo" />
+            <Tooltip text="Baobab Studios" position="bottom">
+              <img :src="assets.baobabLogo" alt="Baobab Studios" class="partner-logo" />
+            </Tooltip>
+            <Tooltip text="Second Chance Productions LLC" position="bottom">
+              <img :src="assets.secondChanceLogo" alt="Second Chance Productions LLC" class="partner-logo" />
+            </Tooltip>
           </div>
         </div>
       </div>
@@ -194,8 +202,8 @@ import StatItem from './components/StatItem.vue';
 import StickyNavbar from './components/StickyNavbar.vue';
 import SecondaryLogo from './components/SecondaryLogo.vue';
 import BubbleAnimation from './components/BubbleAnimation.vue';
+import Tooltip from './components/Tooltip.vue';
 
-// Import assets properly for production builds
 import RobloxLogo from './assets/hero/Roblox.svg';
 import LeftPlant from './assets/hero/Left.svg';
 import RightPlant from './assets/hero/Right.svg';
@@ -212,10 +220,10 @@ export default {
     StickyNavbar,
     SecondaryLogo,
     BubbleAnimation,
+    Tooltip,
   },
   data() {
     return {
-      // Make assets available to template
       assets: {
         robloxLogo: RobloxLogo,
         leftPlant: LeftPlant,

@@ -36,15 +36,12 @@ export default {
       return this.src.endsWith('.svg');
     },
     imgSrc() {
-      // Use Vite's import.meta.glob for better asset handling
       if (this.src.startsWith('http')) {
         return this.src;
       }
       try {
-        // For production builds, construct the asset URL properly
         return new URL(`../assets/${this.src}`, import.meta.url).href;
       } catch {
-        // Fallback to direct path
         return `/src/assets/${this.src}`;
       }
     },
@@ -54,8 +51,6 @@ export default {
       try {
         const response = await fetch(this.imgSrc);
         let svg = await response.text();
-        // Ensure fill uses currentColor for styling
-        //svg = svg.replace(/fill="(.*?)"/g, 'fill="currentColor"');
         this.svgContent = svg;
       } catch (e) {
         this.svgContent = null;
