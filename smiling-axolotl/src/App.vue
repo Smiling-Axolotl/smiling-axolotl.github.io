@@ -12,7 +12,7 @@
           <h1 class="main-title">BUILDING IMMERSIVE<br>EXPERIENCES</h1>
           <p class="description">
             We're an emerging game development studio building immersive
-            <span class="inline-logo"><img src="./assets/hero/Roblox.svg" alt="Roblox" /></span>
+            <span class="inline-logo"><img :src="assets.robloxLogo" alt="Roblox" /></span>
             experiences for <b class="hover-glowing-text">brands</b>, <b class="hover-glowing-text">artists</b>,
             and <b class="hover-glowing-text">communities</b>.
           </p>
@@ -20,8 +20,8 @@
         </div>
 
         <div class="aquatic-plants">
-          <img src="./assets/hero/Left.svg" class="left" />
-          <img src="./assets/hero/Right.svg" class="right" />
+          <img :src="assets.leftPlant" class="left" />
+          <img :src="assets.rightPlant" class="right" />
         </div>
       </div>
     </section>
@@ -98,16 +98,16 @@
         <div class="strategic-partners-card">
           <h3 class="strategic-title">Strategic Partners & Alliances</h3>
           <div class="strategic-partners-logos">
-            <SecondaryLogo src="partners/AstralLabs.svg" alt="Astral Labs" />
-            <img src="./assets/partners/CreatingMadness.svg" alt="Creating Madness" class="creating-madness-logo" />
+            <img :src="assets.astralLabsLogo" alt="Astral Labs" class="partner-logo" />
+            <img :src="assets.creatingMadnessLogo" alt="Creating Madness" class="creating-madness-logo" />
           </div>
         </div>
         
         <div class="experience-card">
           <h3 class="experience-title">Experience our team members bring</h3>
           <div class="experience-logos">
-            <SecondaryLogo src="experience/Baobab.svg" alt="Baobab Studios" />
-            <SecondaryLogo src="experience/SecondChanceProd.svg" alt="Second Chance Productions LLC" />
+            <img :src="assets.baobabLogo" alt="Baobab Studios" class="partner-logo" />
+            <img :src="assets.secondChanceLogo" alt="Second Chance Productions LLC" class="partner-logo" />
           </div>
         </div>
       </div>
@@ -191,20 +191,41 @@
 <script>
 import CustomButton from './components/CustomButton.vue';
 import StatItem from './components/StatItem.vue';
-import ServiceCard from './components/ServiceCard.vue';
 import StickyNavbar from './components/StickyNavbar.vue';
 import SecondaryLogo from './components/SecondaryLogo.vue';
 import BubbleAnimation from './components/BubbleAnimation.vue';
+
+// Import assets properly for production builds
+import RobloxLogo from './assets/hero/Roblox.svg';
+import LeftPlant from './assets/hero/Left.svg';
+import RightPlant from './assets/hero/Right.svg';
+import CreatingMadnessLogo from './assets/partners/CreatingMadness.svg';
+import AstralLabsLogo from './assets/partners/AstralLabs.svg';
+import BaobabLogo from './assets/experience/Baobab.svg';
+import SecondChanceLogo from './assets/experience/SecondChanceProd.svg';
 
 export default {
   name: 'App',
   components: {
     CustomButton,
     StatItem,
-    ServiceCard,
     StickyNavbar,
     SecondaryLogo,
     BubbleAnimation,
+  },
+  data() {
+    return {
+      // Make assets available to template
+      assets: {
+        robloxLogo: RobloxLogo,
+        leftPlant: LeftPlant,
+        rightPlant: RightPlant,
+        creatingMadnessLogo: CreatingMadnessLogo,
+        astralLabsLogo: AstralLabsLogo,
+        baobabLogo: BaobabLogo,
+        secondChanceLogo: SecondChanceLogo,
+      }
+    }
   },
   mounted() {
     this.initSmoothScrolling();

@@ -36,11 +36,16 @@ export default {
       return this.src.endsWith('.svg');
     },
     imgSrc() {
-      try {
-        const url = `../assets/${this.src}`;
-        return new URL(url, import.meta.url).href;
-      } catch {
+      // Use Vite's import.meta.glob for better asset handling
+      if (this.src.startsWith('http')) {
         return this.src;
+      }
+      try {
+        // For production builds, construct the asset URL properly
+        return new URL(`../assets/${this.src}`, import.meta.url).href;
+      } catch {
+        // Fallback to direct path
+        return `/src/assets/${this.src}`;
       }
     },
   },
