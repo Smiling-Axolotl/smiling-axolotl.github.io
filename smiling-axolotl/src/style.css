@@ -14,7 +14,7 @@ body {
 }
 
 .hero-section {
-  background: white;
+  background: linear-gradient(180deg, rgba(173, 216, 230, 0.1) 0%, rgba(255, 255, 255, 1) 40%);
   position: relative;
   overflow: hidden;
   min-height: calc(100vh - 100px);
@@ -261,19 +261,69 @@ body {
 .aquatic-plants img.left {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -5vh; /* Move down to eliminate gap */
   height: 80%;
   width: auto;
   transform: none;
+  animation: gentleSway 4s ease-in-out infinite;
+  transform-origin: bottom center;
 }
 
 .aquatic-plants img.right {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -5vh; /* Move down to eliminate gap */
   height: 100%;
   width: auto;
   transform: none;
+  animation: gentleSway 5s ease-in-out infinite reverse;
+  transform-origin: bottom center;
+}
+
+@keyframes gentleSway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+}
+
+/* Ensure responsive animation works with transforms */
+@media (max-width: 950px) {
+  .aquatic-plants img.left {
+    animation: gentleSwayLeft 4s ease-in-out infinite;
+  }
+  .aquatic-plants img.right {
+    animation: gentleSwayRight 5s ease-in-out infinite;
+  }
+}
+
+@keyframes gentleSwayLeft {
+  0%, 100% {
+    transform: translateX(calc(-35vw)) rotate(0deg);
+  }
+  25% {
+    transform: translateX(calc(-35vw)) rotate(1deg);
+  }
+  75% {
+    transform: translateX(calc(-35vw)) rotate(-1deg);
+  }
+}
+
+@keyframes gentleSwayRight {
+  0%, 100% {
+    transform: translateX(calc(35vw)) rotate(0deg);
+  }
+  25% {
+    transform: translateX(calc(35vw)) rotate(-1deg);
+  }
+  75% {
+    transform: translateX(calc(35vw)) rotate(1deg);
+  }
 }
 
 /* Partners Section */
@@ -410,9 +460,56 @@ margin: 0 5vw;
   }
   .aquatic-plants img.left {
     transform: translateX(calc(-35vw));
+    bottom: -3vh; /* Adjust for smaller screens */
+    height: 75%;
   }
   .aquatic-plants img.right {
     transform: translateX(calc(35vw));
+    bottom: -3vh; /* Adjust for smaller screens */
+    height: 90%;
+  }
+}
+
+/* Add additional responsive rules for very small screens */
+@media (max-width: 600px) {
+  .aquatic-plants {
+    height: 25vh;
+  }
+  .aquatic-plants img.left {
+    transform: translateX(calc(-40vw));
+    bottom: -2vh;
+    height: 60%;
+    animation: gentleSwaySmallLeft 4s ease-in-out infinite;
+  }
+  .aquatic-plants img.right {
+    transform: translateX(calc(40vw));
+    bottom: -2vh;
+    height: 70%;
+    animation: gentleSwaySmallRight 5s ease-in-out infinite;
+  }
+}
+
+@keyframes gentleSwaySmallLeft {
+  0%, 100% {
+    transform: translateX(calc(-40vw)) rotate(0deg);
+  }
+  25% {
+    transform: translateX(calc(-40vw)) rotate(1deg);
+  }
+  75% {
+    transform: translateX(calc(-40vw)) rotate(-1deg);
+  }
+}
+
+@keyframes gentleSwaySmallRight {
+  0%, 100% {
+    transform: translateX(calc(40vw)) rotate(0deg);
+  }
+  25% {
+    transform: translateX(calc(40vw)) rotate(-1deg);
+  }
+  75% {
+    transform: translateX(calc(40vw)) rotate(1deg);
   }
 }
 

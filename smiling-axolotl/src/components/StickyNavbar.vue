@@ -9,7 +9,7 @@
       </div>
 
       <!-- La curva -->
-      <div class="navbar-curve" :class="{ 'flattened': isSticky }">
+      <div class="navbar-curve">
         <svg class="curve-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
           <path ref="curvePath" d="M0,0 L1440,0 L1440,50 Q720,0 0,50 Z" fill="#2898ff" />
         </svg>
@@ -71,15 +71,26 @@ export default {
         navbar.style.height = `${currentHeight}px`;
       }
 
+      // Handle curve animation smoothly in both directions
       if (this.$refs.curvePath) {
         const scrollProgress = Math.min(this.scrollY / curveMaxScroll, 1);
-        const easeProgress = this.easeOutQuart(scrollProgress);
+        const easeProgress = this.easeInOutCubic(scrollProgress);
 
         const sideHeight = 50 - (easeProgress * 30);
         const curveDepth = 0 + (easeProgress * 35);
 
         const newPath = `M0,0 L1440,0 L1440,${sideHeight} Q720,${curveDepth} 0,${sideHeight} Z`;
         this.$refs.curvePath.setAttribute('d', newPath);
+
+        // Smoothly control the curve container transform
+        const curve = this.$refs.navbar.querySelector('.navbar-curve');
+        if (curve) {
+          // Animate the transform based on scroll progress with smoother easing
+          const transformProgress = Math.min(this.scrollY / 100, 1); // Faster transition for transform
+          const transformEaseProgress = this.easeInOutCubic(transformProgress);
+          const translateY = 100 - (transformEaseProgress * 20); // From 100% to 80%
+          curve.style.transform = `translateY(${translateY}%)`;
+        }
       }
 
       if (this.$refs.navbar) {
@@ -93,6 +104,11 @@ export default {
 
     easeOutQuart(t) {
       return 1 - Math.pow(1 - t, 4);
+    },
+
+    // Smoother easing function for curve animation
+    easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
   }
 }
@@ -164,7 +180,6 @@ export default {
   overflow: hidden;
   transform: translateY(100%);
   z-index: 1001;
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .curve-svg {
@@ -173,15 +188,7 @@ export default {
   display: block;
 }
 
-.curve-svg path {
-  transition: d 0.1s ease-out;
-}
-
 .navbar-spacer {
   height: 0;
-}
-
-.sticky-navbar.is-sticky .navbar-curve {
-  transform: translateY(80px);
 }
 </style>

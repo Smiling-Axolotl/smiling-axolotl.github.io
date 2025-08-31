@@ -3,6 +3,9 @@
     <StickyNavbar />
 
     <section class="hero-section">
+      <!-- Bubble Animation -->
+      <BubbleAnimation />
+      
       <!-- Resto del contenido principal -->
       <div class="white-section">
         <div class="main-content">
@@ -126,6 +129,7 @@ import StatItem from './components/StatItem.vue';
 import ServiceCard from './components/ServiceCard.vue';
 import StickyNavbar from './components/StickyNavbar.vue';
 import SecondaryLogo from './components/SecondaryLogo.vue';
+import BubbleAnimation from './components/BubbleAnimation.vue';
 
 export default {
   name: 'App',
@@ -135,6 +139,7 @@ export default {
     ServiceCard,
     StickyNavbar,
     SecondaryLogo,
+    BubbleAnimation,
   },
   mounted() {
     this.initSmoothScrolling();
