@@ -19,7 +19,7 @@ export default {
         },
         position: {
             type: String,
-            default: 'top', // top, bottom, left, right
+            default: 'top',
         },
     },
     data() {
@@ -47,7 +47,7 @@ export default {
     font-family: 'Poppins', sans-serif;
     font-size: 0.95em;
     white-space: nowrap;
-    z-index: 10;
+    z-index: 1000;
     opacity: 0.95;
     pointer-events: none;
 }

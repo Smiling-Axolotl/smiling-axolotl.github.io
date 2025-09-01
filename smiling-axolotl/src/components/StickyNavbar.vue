@@ -2,10 +2,15 @@
   <div class="navbar-wrapper">
     <div ref="navbar" class="sticky-navbar" :class="{ 'is-sticky': isSticky }">
       <div class="navbar-content">
-        <div class="axolotl-logo-svg">
-          <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" />
+        <div class="navbar-left">
+          <div class="axolotl-logo-svg">
+            <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" />
+          </div>
+          <h1 class="logo-text">SMILING<br>AXOLOTL</h1>
         </div>
-        <h1 class="logo-text">SMILING<br>AXOLOTL</h1>
+        <div class="navbar-actions">
+          <LanguageToggle />
+        </div>
       </div>
 
       <!-- La curva -->
@@ -22,8 +27,13 @@
 
 <!-- Neta que no supe como hacerlo mas smooth AAAA -->
 <script>
+import LanguageToggle from './LanguageToggle.vue'
+
 export default {
   name: 'StickyNavbar',
+  components: {
+    LanguageToggle
+  },
   data() {
     return {
       isSticky: false,
@@ -147,9 +157,23 @@ export default {
 .navbar-content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   position: relative;
   z-index: 1002;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
 }
 
 .axolotl-logo-svg {

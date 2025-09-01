@@ -8,15 +8,25 @@
       <!-- Resto del contenido principal -->
       <div class="white-section">
         <div class="main-content">
-          <p class="tagline">CREATED BY PLAYERS FOR PLAYERS</p>
-          <h1 class="main-title">BUILDING IMMERSIVE<br>EXPERIENCES</h1>
+          <p class="tagline">{{ $t('hero.tagline') }}</p>
+          <h1 class="main-title" v-html="$t('hero.title')"></h1>
           <p class="description">
-            We're an emerging game development studio building immersive
-            <span class="inline-logo"><img :src="assets.robloxLogo" alt="Roblox" /></span>
-            experiences for <b class="hover-glowing-text">brands</b>, <b class="hover-glowing-text">artists</b>,
-            and <b class="hover-glowing-text">communities</b>.
+            <i18n-t keypath="hero.description" tag="span">
+              <template #roblox>
+                <span class="inline-logo"><img :src="assets.robloxLogo" alt="Roblox" /></span>
+              </template>
+              <template #brands>
+                <b class="hover-glowing-text">{{ $t('hero.brands') }}</b>
+              </template>
+              <template #artists>
+                <b class="hover-glowing-text">{{ $t('hero.artists') }}</b>
+              </template>
+              <template #communities>
+                <b class="hover-glowing-text">{{ $t('hero.communities') }}</b>
+              </template>
+            </i18n-t>
           </p>
-          <CustomButton variant="primary" class="shimmer">WORK WITH US</CustomButton>
+          <CustomButton variant="primary" class="shimmer">{{ $t('hero.cta') }}</CustomButton>
         </div>
 
         <div class="aquatic-plants">
@@ -28,38 +38,48 @@
 
     <section class="blue-banner-section">
       <div class="blue-banner-container">
-        <h2 class="blue-banner-title">WE'RE NOT</h2>
+        <h2 class="blue-banner-title" @mousemove="handleMouseMove" @mouseleave="resetLetters" ref="titleElement">
+          <span 
+            v-for="(letter, index) in titleLetters" 
+            :key="index" 
+            :ref="el => { if (el) letterRefs[index] = el }"
+            class="letter"
+            :class="{ space: letter === ' ' }"
+          >
+            {{ letter === ' ' ? '\u00A0' : letter }}
+          </span>
+        </h2>
         <div class="marquee-container">
           <div class="marquee-line marquee-right">
             <div class="marquee-content">
-              <span class="phrase-bold">the makers of soulless experiences</span>
-              <span class="phrase-italic">afraid to take risks</span>
-              <span class="phrase-normal">your average development company</span>
-              <span class="phrase-bold">the makers of soulless experiences</span>
-              <span class="phrase-italic">afraid to take risks</span>
-              <span class="phrase-normal">your average development company</span>
+              <span class="phrase-bold">{{ $t('banner.phrases.line1.phrase1') }}</span>
+              <span class="phrase-italic">{{ $t('banner.phrases.line1.phrase2') }}</span>
+              <span class="phrase-normal">{{ $t('banner.phrases.line1.phrase3') }}</span>
+              <span class="phrase-bold">{{ $t('banner.phrases.line1.phrase1') }}</span>
+              <span class="phrase-italic">{{ $t('banner.phrases.line1.phrase2') }}</span>
+              <span class="phrase-normal">{{ $t('banner.phrases.line1.phrase3') }}</span>
             </div>
           </div>
           
           <div class="marquee-line marquee-left">
             <div class="marquee-content">
-              <span class="phrase-italic">about trends</span>
-              <span class="phrase-bold">here to waste your time</span>
-              <span class="phrase-normal">a faceless corporation</span>
-              <span class="phrase-italic">about trends</span>
-              <span class="phrase-bold">here to waste your time</span>
-              <span class="phrase-normal">a faceless corporation</span>
+              <span class="phrase-italic">{{ $t('banner.phrases.line2.phrase1') }}</span>
+              <span class="phrase-bold">{{ $t('banner.phrases.line2.phrase2') }}</span>
+              <span class="phrase-normal">{{ $t('banner.phrases.line2.phrase3') }}</span>
+              <span class="phrase-italic">{{ $t('banner.phrases.line2.phrase1') }}</span>
+              <span class="phrase-bold">{{ $t('banner.phrases.line2.phrase2') }}</span>
+              <span class="phrase-normal">{{ $t('banner.phrases.line2.phrase3') }}</span>
             </div>
           </div>
           
           <div class="marquee-line marquee-right">
             <div class="marquee-content">
-              <span class="phrase-normal">copy-pasting what already exists</span>
-              <span class="phrase-italic">here to cash in</span>
-              <span class="phrase-bold">bound by formulas</span>
-              <span class="phrase-normal">copy-pasting what already exists</span>
-              <span class="phrase-italic">here to cash in</span>
-              <span class="phrase-bold">bound by formulas</span>
+              <span class="phrase-normal">{{ $t('banner.phrases.line3.phrase1') }}</span>
+              <span class="phrase-italic">{{ $t('banner.phrases.line3.phrase2') }}</span>
+              <span class="phrase-bold">{{ $t('banner.phrases.line3.phrase3') }}</span>
+              <span class="phrase-normal">{{ $t('banner.phrases.line3.phrase1') }}</span>
+              <span class="phrase-italic">{{ $t('banner.phrases.line3.phrase2') }}</span>
+              <span class="phrase-bold">{{ $t('banner.phrases.line3.phrase3') }}</span>
             </div>
           </div>
         </div>
@@ -69,25 +89,31 @@
     <!-- Grow Your Brand Section -->
     <section class="grow-brand-section">
       <div class="grow-brand-container">
-        <h2 class="grow-brand-title">GROW YOUR <span class="brand-highlight">BRAND</span></h2>
-        <p class="grow-brand-subtitle">ON A PLATFORM WITH</p>
+        <h2 class="grow-brand-title">
+          <i18n-t keypath="services.title" tag="span">
+            <template #brand>
+              <span class="brand-highlight">{{ $t('services.brand') }}</span>
+            </template>
+          </i18n-t>
+        </h2>
+        <p class="grow-brand-subtitle">{{ $t('services.subtitle') }}</p>
         
         <div class="brand-stats">
           <StatCard
             number="111.8M"
-            label="DAILY ACTIVE<br>USERS"
-            source="Source: Roblox Investor Relations&nbsp;Q2 2025"
+            :label="$t('services.stats.dailyUsers')"
+            :source="$t('services.stats.robloxSource')"
           />
           <StatCard
             number="27.4B"
-            label="ENGAGEMENT<br>HOURS"
-            source="Source: Roblox Investor Relations&nbsp;Q2 2025"
+            :label="$t('services.stats.engagementHours')"
+            :source="$t('services.stats.robloxSource')"
           />
           <StatCard
             number="$753K"
-            label="AVG. YEARLY<br>REVENUE"
-            note="(TOP 1,000 DEVS)"
-            source="Source: Roblox Developer Conference&nbsp;Earnings Report 2024"
+            :label="$t('services.stats.avgRevenue')"
+            :note="$t('services.stats.topDevsNote')"
+            :source="$t('services.stats.devConfSource')"
           />
         </div>
       </div>
@@ -96,27 +122,37 @@
     <!-- Strategic Partners & Alliances -->
     <section class="strategic-section">
       <div class="strategic-container">
-        <div class="strategic-partners-card">
-          <h3 class="strategic-title">Strategic Partners & Alliances</h3>
-          <div class="strategic-partners-logos">
-            <Tooltip text="Astral Labs" position="bottom">
-              <img :src="assets.astralLabsLogo" alt="Astral Labs" class="partner-logo" />
-            </Tooltip>
-            <Tooltip text="Creating Madness" position="bottom">
-              <img :src="assets.creatingMadnessLogo" alt="Creating Madness" class="partner-logo" />
-            </Tooltip>
+        <div class="strategic-partners-wrapper">
+          <div class="strategic-partners-card">
+            <div class="card-background"></div>
+            <div class="card-content">
+              <h3 class="strategic-title">{{ $t('partners.strategic.title') }}</h3>
+              <div class="strategic-partners-logos">
+                <Tooltip text="Astral Labs" position="bottom">
+                  <img :src="assets.astralLabsLogo" alt="Astral Labs" class="partner-logo" />
+                </Tooltip>
+                <Tooltip text="Creating Madness" position="bottom">
+                  <img :src="assets.creatingMadnessLogo" alt="Creating Madness" class="partner-logo" />
+                </Tooltip>
+              </div>
+            </div>
           </div>
         </div>
         
-        <div class="experience-card">
-          <h3 class="experience-title">Experience our team members bring</h3>
-          <div class="experience-logos">
-            <Tooltip text="Baobab Studios" position="bottom">
-              <img :src="assets.baobabLogo" alt="Baobab Studios" class="partner-logo" />
-            </Tooltip>
-            <Tooltip text="Second Chance Productions LLC" position="bottom">
-              <img :src="assets.secondChanceLogo" alt="Second Chance Productions LLC" class="partner-logo" />
-            </Tooltip>
+        <div class="experience-wrapper">
+          <div class="experience-card">
+            <div class="card-background"></div>
+            <div class="card-content">
+              <h3 class="experience-title">{{ $t('partners.experience.title') }}</h3>
+              <div class="experience-logos">
+                <Tooltip text="Baobab Studios" position="bottom">
+                  <img :src="assets.baobabLogo" alt="Baobab Studios" class="partner-logo" />
+                </Tooltip>
+                <Tooltip text="Second Chance Productions LLC" position="bottom">
+                  <img :src="assets.secondChanceLogo" alt="Second Chance Productions LLC" class="partner-logo second-chance-logo" />
+                </Tooltip>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -126,10 +162,8 @@
     <section class="about-section">
       <div class="container">
         <div class="about-content">
-          <h2>About Smiling Axolotl</h2>
-          <p>We're a passionate team of Roblox developers who understand what makes games truly engaging. Our studio
-            combines years of platform expertise with fresh creative perspectives to deliver exceptional immersive
-            experiences.</p>
+          <h2>{{ $t('about.title') }}</h2>
+          <p>{{ $t('about.description') }}</p>
           <div class="stats">
             <StatItem number="..." label="Projects" />
             <StatItem number="..." label="Players" />
@@ -154,9 +188,9 @@
       <div class="footer-content">
         <div class="footer-main">
           <div class="footer-left floating-element-slow">
-            <h2 class="footer-title">LET'S BUILD<br>SOMETHING<br>AMAZING</h2>
+            <h2 class="footer-title">{{ $t('footer.title') }}<br>{{ $t('footer.subtitle') }}</h2>
             <div class="footer-actions">
-              <CustomButton variant="primary" class="contact-btn floating-element-medium">CONTACT US</CustomButton>
+              <CustomButton variant="primary" class="contact-btn floating-element-medium">{{ $t('footer.cta') }}</CustomButton>
               <div class="email-icon floating-element-fast">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -168,7 +202,7 @@
           
           <div class="footer-right">
             <div class="social-section floating-element-medium">
-              <h3 class="social-title">Our Socials</h3>
+              <h3 class="social-title">{{ $t('footer.socials') }}</h3>
               <div class="social-icons">
                 <a href="https://x.com/smiling-axo" class="social-link twitter floating-icon-1">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -227,6 +261,7 @@ export default {
   },
   data() {
     return {
+      letterRefs: [],
       assets: {
         robloxLogo: RobloxLogo,
         leftPlant: LeftPlant,
@@ -236,6 +271,11 @@ export default {
         baobabLogo: BaobabLogo,
         secondChanceLogo: SecondChanceLogo,
       }
+    }
+  },
+  computed: {
+    titleLetters() {
+      return this.$t('banner.title').split('');
     }
   },
   mounted() {
@@ -253,6 +293,41 @@ export default {
             });
           }
         });
+      });
+    },
+    handleMouseMove(event) {
+      if (!this.$refs.titleElement) return;
+      
+      const rect = this.$refs.titleElement.getBoundingClientRect();
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+      
+      this.letterRefs.forEach((letterEl, index) => {
+        if (!letterEl) return;
+        
+        const letterRect = letterEl.getBoundingClientRect();
+        const letterCenterX = letterRect.left + letterRect.width / 2 - rect.left;
+        const letterCenterY = letterRect.top + letterRect.height / 2 - rect.top;
+        
+        const deltaX = mouseX - letterCenterX;
+        const deltaY = mouseY - letterCenterY;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+        const maxDistance = 180;
+        const influence = Math.max(0, 1 - distance / maxDistance);
+        
+        const repulsionStrength = 15; 
+        const moveX = influence * repulsionStrength * (deltaX < 0 ? 1 : -1);
+        const moveY = influence * repulsionStrength * (deltaY < 0 ? 1 : -1);
+        
+        letterEl.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+    },
+    resetLetters() {
+      this.letterRefs.forEach(letterEl => {
+        if (letterEl) {
+          letterEl.style.transform = 'translate(0px, 0px)';
+        }
       });
     }
   }

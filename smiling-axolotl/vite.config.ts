@@ -8,7 +8,7 @@ export default defineConfig({
   base: '/', // Since this is a .github.io repo, deploy to root
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(process.cwd(), './src'),
     },
   },
 });

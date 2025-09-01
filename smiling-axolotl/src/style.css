@@ -17,7 +17,7 @@ body {
   background: linear-gradient(180deg, rgba(173, 216, 230, 0.1) 0%, rgba(255, 255, 255, 1) 40%);
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - 70px); /* Adjusted for smaller navbar */
+  min-height: calc(100vh - 50px);
 }
 
 .white-section {
@@ -690,14 +690,29 @@ body {
   gap: 2rem;
 }
 
-.strategic-partners-card,
-.experience-card {
-  background: #fff;
-  padding: 2rem;
+.strategic-partners-wrapper,
+.experience-wrapper {
+  position: relative;
 }
 
-.strategic-partners-card {
-  margin-right: 15rem;
+.strategic-partners-card,
+.experience-card {
+  position: relative;
+  background: transparent;
+  padding: 0;
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 1;
+}
+
+.strategic-partners-card .card-background {
   --m:
     conic-gradient(from -135deg at right, #0000,#000 1deg 89deg,#0000 90deg) right/100% 39px repeat-y;
   
@@ -705,13 +720,26 @@ body {
   mask: var(--m);
 }
 
-.experience-card {
-  margin-left: 15rem;
+.experience-card .card-background {
   --m:
     conic-gradient(from 45deg at left, #0000, #000 1deg 89deg, #0000 90deg) left/100% 39px repeat-y;
 
   -webkit-mask: var(--m);
   mask: var(--m);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+}
+
+.strategic-partners-wrapper {
+  margin-right: 15rem;
+}
+
+.experience-wrapper {
+  margin-left: 15rem;
 }
 
 .strategic-title,
@@ -749,6 +777,16 @@ body {
 
 .partner-logo:hover {
   filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(10%) contrast(100%);
+  transform: translateY(-2px);
+}
+
+/* Remove blue filter from SecondChance Productions logo */
+.second-chance-logo {
+  filter: none !important;
+}
+
+.second-chance-logo:hover {
+  filter: brightness(0.8) !important;
   transform: translateY(-2px);
 }
 
@@ -803,6 +841,18 @@ body {
   margin-bottom: 2rem;
   text-align: center;
   text-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  cursor: default;
+  user-select: none;
+}
+
+.blue-banner-title .letter {
+  display: inline-block;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.blue-banner-title .letter.space {
+  width: 0.3em;
 }
 
 .marquee-container {
@@ -833,14 +883,15 @@ body {
   opacity: 0.9;
   line-height: 1;
   width: max-content;
+  will-change: transform;
 }
 
 .marquee-right .marquee-content {
-  animation: scrollRightContinuous 30s linear infinite;
+  animation: scrollRightContinuous 40s linear infinite;
 }
 
 .marquee-left .marquee-content {
-  animation: scrollLeftContinuous 35s linear infinite;
+  animation: scrollLeftContinuous 45s linear infinite;
 }
 
 .phrase-normal {
@@ -859,7 +910,7 @@ body {
 
 @keyframes scrollRightContinuous {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-50%);
@@ -871,7 +922,7 @@ body {
     transform: translateX(-50%);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
 }
 

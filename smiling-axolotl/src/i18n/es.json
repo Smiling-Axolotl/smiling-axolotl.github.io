@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "tagline": "CREADO POR JUGADORES PARA JUGADORES",
+    "title": "CONSTRUYENDO EXPERIENCIAS<br>INMERSIVAS",
+    "description": "Somos un estudio emergente de desarrollo de juegos que construye experiencias inmersivas de {roblox} para {brands}, {artists} y {communities}.",
+    "brands": "marcas",
+    "artists": "artistas",
+    "communities": "comunidades",
+    "cta": "TRABAJA CON NOSOTROS"
+  },
+  "banner": {
+    "title": "NO SOMOS",
+    "phrases": {
+      "line1": {
+        "phrase1": "creadores de experiencias sin alma",
+        "phrase2": "temerosos de tomar riesgos",
+        "phrase3": "otra empresa promedio"
+      },
+      "line2": {
+        "phrase1": "seguidores de tendencias",
+        "phrase2": "un grupo mediocre",
+        "phrase3": "una corporación sin rostro"
+      },
+      "line3": {
+        "phrase1": "imitadores de modas",
+        "phrase2": "desarrolladores sin creatividad",
+        "phrase3": "buscadores de excusas"
+      }
+    }
+  },
+  "services": {
+    "title": "HAZ CRECER TU {brand}",
+    "brand": "MARCA",
+    "subtitle": "EN UNA PLATAFORMA CON",
+    "stats": {
+      "dailyUsers": "USUARIOS ACTIVOS<br>DIARIOS",
+      "engagementHours": "HORAS DE<br>PARTICIPACIÓN",
+      "avgRevenue": "INGRESOS ANUALES<br>PROMEDIO",
+      "topDevsNote": "(TOP 1,000 DEVS)",
+      "robloxSource": "Relaciones con Inversionistas Roblox Q2 2025",
+      "devConfSource": "Reporte de Ganancias Conferencia de Desarrolladores Roblox 2024"
+    }
+  },
+  "partners": {
+    "strategic": {
+      "title": "Socios Estratégicos y Alianzas"
+    },
+    "experience": {
+      "title": "Experiencia que aportan los miembros de nuestro equipo"
+    }
+  },
+  "about": {
+    "title": "Acerca de Smiling Axolotl",
+    "description": "Somos un equipo apasionado de desarrolladores de Roblox que entiende qué hace que los juegos sean verdaderamente atractivos. Nuestro estudio combina creatividad con experiencia técnica para entregar experiencias que los jugadores aman y recuerdan."
+  },
+  "footer": {
+    "title": "CONSTRUYAMOS",
+    "subtitle": "ALGO INCREÍBLE",
+    "cta": "CONTÁCTANOS",
+    "socials": "Nuestras Redes"
+  },
+  "language": {
+    "switch": "Switch to English"
+  }
+}
