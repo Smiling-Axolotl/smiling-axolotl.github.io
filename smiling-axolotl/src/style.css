@@ -781,11 +781,11 @@ body {
 }
 
 /* Remove blue filter from SecondChance Productions logo */
-.second-chance-logo {
+.no-filter-logo {
   filter: none !important;
 }
 
-.second-chance-logo:hover {
+.no-filter-logo:hover {
   filter: brightness(0.8) !important;
   transform: translateY(-2px);
 }

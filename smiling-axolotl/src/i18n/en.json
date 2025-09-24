@@ -41,10 +41,10 @@
     "stats": {
       "dailyUsers": "DAILY ACTIVE<br>USERS",
       "engagementHours": "ENGAGEMENT<br>HOURS", 
-      "avgRevenue": "AVG. YEARLY<br>REVENUE",
+      "avgRevenue": "AVG. DEVELOPER YEARLY REVENUE",
       "topDevsNote": "(TOP 1,000 DEVS)",
       "robloxSource": "Roblox Investor Relations Q2 2025",
-      "devConfSource": "Roblox Developer Conference Earnings Report 2024"
+      "devConfSource": "Roblox Developer Conference Earnings Report 2025"
     }
   },
   "partners": {

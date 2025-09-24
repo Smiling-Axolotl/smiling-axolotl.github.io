@@ -110,7 +110,7 @@
             :source="$t('services.stats.robloxSource')"
           />
           <StatCard
-            number="$753K"
+            number="$980K"
             :label="$t('services.stats.avgRevenue')"
             :note="$t('services.stats.topDevsNote')"
             :source="$t('services.stats.devConfSource')"
@@ -146,10 +146,10 @@
               <h3 class="experience-title">{{ $t('partners.experience.title') }}</h3>
               <div class="experience-logos">
                 <Tooltip text="Baobab Studios" position="bottom">
-                  <img :src="assets.baobabLogo" alt="Baobab Studios" class="partner-logo" />
+                  <img :src="assets.baobabLogo" alt="Baobab Studios" class="partner-logo no-filter-logo" />
                 </Tooltip>
                 <Tooltip text="Second Chance Productions LLC" position="bottom">
-                  <img :src="assets.secondChanceLogo" alt="Second Chance Productions LLC" class="partner-logo second-chance-logo" />
+                  <img :src="assets.secondChanceLogo" alt="Second Chance Productions LLC" class="partner-logo no-filter-logo" />
                 </Tooltip>
               </div>
             </div>
@@ -191,12 +191,12 @@
             <h2 class="footer-title">{{ $t('footer.title') }}<br>{{ $t('footer.subtitle') }}</h2>
             <div class="footer-actions">
               <CustomButton variant="primary" class="contact-btn floating-element-medium">{{ $t('footer.cta') }}</CustomButton>
-              <div class="email-icon floating-element-fast">
+              <a href="mailto:contact@smilingaxolotl.com" class="email-icon floating-element-fast">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </div>
+              </a>
             </div>
           </div>
           
@@ -204,7 +204,7 @@
             <div class="social-section floating-element-medium">
               <h3 class="social-title">{{ $t('footer.socials') }}</h3>
               <div class="social-icons">
-                <a href="https://x.com/smiling-axo" class="social-link twitter floating-icon-1">
+                <a href="https://x.com/smiling_axo" class="social-link twitter floating-icon-1">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>

@@ -41,10 +41,10 @@
     "stats": {
       "dailyUsers": "USUARIOS ACTIVOS<br>DIARIOS",
       "engagementHours": "HORAS DE<br>PARTICIPACIÓN",
-      "avgRevenue": "INGRESOS ANUALES<br>PROMEDIO",
-      "topDevsNote": "(TOP 1,000 DEVS)",
+      "avgRevenue": "INGRESOS ANUALES PROMEDIO POR DESARROLLADOR",
+      "topDevsNote": "(TOP 1,000 DESAROLLADORES)",
       "robloxSource": "Relaciones con Inversionistas Roblox Q2 2025",
-      "devConfSource": "Reporte de Ganancias Conferencia de Desarrolladores Roblox 2024"
+      "devConfSource": "Reporte de Ganancias Conferencia de Desarrolladores Roblox 2025"
     }
   },
   "partners": {
