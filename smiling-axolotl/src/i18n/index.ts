@@ -21,7 +21,9 @@ export const i18n = createI18n({
   warnHtmlMessage: false,
   missingWarn: false,
   fallbackWarn: false,
-  escapeParameter: false
+  escapeParameter: false,
+  silentTranslationWarn: true,
+  silentFallbackWarn: true
 })
 
 // Export function to change language
