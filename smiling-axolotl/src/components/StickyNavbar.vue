@@ -216,6 +216,7 @@ export default {
   overflow: hidden;
   transform: translateY(100%);
   z-index: 1001;
+  pointer-events: none; /* ensure decorative curve never blocks clicks */
 }
 
 .curve-svg {

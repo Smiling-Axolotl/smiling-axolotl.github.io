@@ -26,32 +26,34 @@ export default {
   },
   methods: {
     createBubble() {
+      const { style, lifetimeMs } = this.generateBubbleStyle();
       const bubble = {
         id: this.bubbleId++,
-        style: this.generateBubbleStyle(),
+        style,
       };
       
       this.bubbles.push(bubble);
       
       setTimeout(() => {
         this.removeBubble(bubble.id);
-      }, 8000); 
+      }, lifetimeMs);
     },
 
     generateBubbleStyle() {
-      const size = Math.random() * 16 + 4;
+      // Larger, more noticeable bubbles: 24px - 64px
+      const size = Math.random() * 40 + 24;
       
       const leftPosition = Math.random() * 100;
       
       const duration = Math.random() * 4 + 6;
-    
-      const delay = Math.random() * 2;
       
-      const opacity = Math.random() * 0.5 + 0.3;
+      const delay = Math.random() * 1.5;
+      
+      const opacity = Math.random() * 0.4 + 0.4; // Slightly more visible
       
       const drift = (Math.random() - 0.5) * 50;
       
-      return {
+      const style = {
         width: `${size}px`,
         height: `${size}px`,
         left: `${leftPosition}%`,
@@ -60,6 +62,8 @@ export default {
         animationDelay: `${delay}s`,
         '--drift': `${drift}px`,
       };
+      const lifetimeMs = Math.round((duration + delay) * 1000 + 100);
+      return { style, lifetimeMs };
     },
 
     removeBubble(id) {
@@ -112,7 +116,12 @@ export default {
   bottom: -20px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(40, 152, 255, 0.3));
   border-radius: 50%;
-  animation: bubbleFloat 7s linear infinite;
+  /* One-shot animation controlled by inline duration/delay */
+  animation-name: bubbleFloat;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: both; /* keep final state until removed */
+  will-change: transform, opacity;
   box-shadow: 
     inset 0 0 10px rgba(255, 255, 255, 0.3),
     0 0 15px rgba(40, 152, 255, 0.2);
@@ -155,7 +164,7 @@ export default {
 }
 
 .bubble:nth-child(7n) {
-  animation-duration: 9s !important;
+  /* duration handled inline per bubble */
   background: linear-gradient(135deg, rgba(240, 248, 255, 0.7), rgba(40, 152, 255, 0.2));
 }
 </style>

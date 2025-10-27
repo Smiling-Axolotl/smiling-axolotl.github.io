@@ -3,9 +3,7 @@
     <StickyNavbar />
 
     <section class="hero-section">
-      <BubbleAnimation />
       
-      <!-- Resto del contenido principal -->
       <div class="white-section">
         <div class="main-content">
           <p class="tagline">{{ $t('hero.tagline') }}</p>
@@ -38,11 +36,10 @@
 
     <section class="blue-banner-section">
       <div class="blue-banner-container">
-        <h2 class="blue-banner-title" @mousemove="handleMouseMove" @mouseleave="resetLetters" ref="titleElement">
+        <h2 class="blue-banner-title">
           <span 
             v-for="(letter, index) in titleLetters" 
-            :key="index" 
-            :ref="el => { if (el) letterRefs[index] = el }"
+            :key="index"
             class="letter"
             :class="{ space: letter === ' ' }"
           >
@@ -158,20 +155,8 @@
       </div>
     </section>
 
-    <!-- El about si lo escribio Chat xd, ahi lo cambias-->
-    <section class="about-section">
-      <div class="container">
-        <div class="about-content">
-          <h2>{{ $t('about.title') }}</h2>
-          <p>{{ $t('about.description') }}</p>
-          <div class="stats">
-            <StatItem number="..." label="Projects" />
-            <StatItem number="..." label="Players" />
-            <StatItem number="..." label="Years" />
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Services (Tabbed) -->
+    <ServicesSection />
 
     <footer class="footer-section">
       <div class="waves-top">
@@ -237,8 +222,8 @@ import StatItem from './components/StatItem.vue';
 import StatCard from './components/StatCard.vue';
 import StickyNavbar from './components/StickyNavbar.vue';
 import SecondaryLogo from './components/SecondaryLogo.vue';
-import BubbleAnimation from './components/BubbleAnimation.vue';
 import Tooltip from './components/Tooltip.vue';
+import ServicesSection from './components/ServicesSection.vue';
 
 import RobloxLogo from './assets/hero/Roblox.svg';
 import LeftPlant from './assets/hero/Left.svg';
@@ -252,16 +237,15 @@ export default {
   name: 'App',
   components: {
     CustomButton,
-  StatItem,
-  StatCard,
+    StatItem,
+    StatCard,
     StickyNavbar,
     SecondaryLogo,
-    BubbleAnimation,
     Tooltip,
+    ServicesSection,
   },
   data() {
     return {
-      letterRefs: [],
       assets: {
         robloxLogo: RobloxLogo,
         leftPlant: LeftPlant,
@@ -270,7 +254,47 @@ export default {
         astralLabsLogo: AstralLabsLogo,
         baobabLogo: BaobabLogo,
         secondChanceLogo: SecondChanceLogo,
-      }
+      },
+  serviceTab: 'devs',
+      serviceMediaEls: [],
+      mediaState: null,
+      _servicesTicking: false,
+      servicesBrands: [
+        {
+          title: 'IMMERSIVE<br>CONCERTS',
+          desc: 'Bring your artists and fans together inside interactive 3D worlds',
+        },
+        {
+          title: 'CUSTOM<br>EXPERIENCES',
+          desc: 'Tailor‑made worlds designed around your brand’s vision',
+        },
+        {
+          title: 'INTEGRATION &<br>ACTIVATIONS',
+          desc: 'Seamlessly connect your brand with in‑game events and systems',
+        },
+        {
+          title: 'DIGITAL<br>APPAREL',
+          desc: 'Branded outfits and collectibles that players actually wear',
+        },
+      ],
+      servicesDevs: [
+        {
+          title: 'LIVEOPS &<br>MONETIZATION',
+          desc: 'Events, economy design, and systems that scale engagement',
+        },
+        {
+          title: 'WORLD‑CLASS<br>ART & AUDIO',
+          desc: 'Stylized art direction, characters, VFX, and sound design',
+        },
+        {
+          title: 'ENGINEERING<br>SUPPORT',
+          desc: 'Gameplay, systems, and backend expertise on Roblox',
+        },
+        {
+          title: 'GO‑TO‑MARKET<br>GROWTH',
+          desc: 'Community, creators, and UA strategies that perform',
+        },
+      ]
     }
   },
   computed: {
@@ -293,41 +317,6 @@ export default {
             });
           }
         });
-      });
-    },
-    handleMouseMove(event) {
-      if (!this.$refs.titleElement) return;
-      
-      const rect = this.$refs.titleElement.getBoundingClientRect();
-      const mouseX = event.clientX - rect.left;
-      const mouseY = event.clientY - rect.top;
-      
-      this.letterRefs.forEach((letterEl, index) => {
-        if (!letterEl) return;
-        
-        const letterRect = letterEl.getBoundingClientRect();
-        const letterCenterX = letterRect.left + letterRect.width / 2 - rect.left;
-        const letterCenterY = letterRect.top + letterRect.height / 2 - rect.top;
-        
-        const deltaX = mouseX - letterCenterX;
-        const deltaY = mouseY - letterCenterY;
-        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-        
-        const maxDistance = 180;
-        const influence = Math.max(0, 1 - distance / maxDistance);
-        
-        const repulsionStrength = 15; 
-        const moveX = influence * repulsionStrength * (deltaX < 0 ? 1 : -1);
-        const moveY = influence * repulsionStrength * (deltaY < 0 ? 1 : -1);
-        
-        letterEl.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      });
-    },
-    resetLetters() {
-      this.letterRefs.forEach(letterEl => {
-        if (letterEl) {
-          letterEl.style.transform = 'translate(0px, 0px)';
-        }
       });
     }
   }
