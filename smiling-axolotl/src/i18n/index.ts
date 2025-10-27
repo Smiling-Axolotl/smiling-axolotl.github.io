@@ -17,7 +17,10 @@ export const i18n = createI18n({
   locale: savedLocale,
   fallbackLocale: 'en',
   messages,
-  globalInjection: true
+  globalInjection: true,
+  warnHtmlMessage: false, // Suppress HTML in message warnings since we use v-html intentionally
+  missingWarn: false, // Optional: suppress missing translation warnings in production
+  fallbackWarn: false // Optional: suppress fallback warnings
 })
 
 // Export function to change language
