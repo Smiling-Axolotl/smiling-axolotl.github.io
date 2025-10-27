@@ -24,8 +24,14 @@
           <div class="card-content">
             <h3 class="experience-title">{{ $t('partners.experience.title') }}</h3>
             <div class="experience-logos">
+              <Tooltip text="Netflix Next World" position="bottom">
+                <img :src="netflixNextWorldLogo" alt="Netflix Next World" class="partner-logo no-filter-logo" />
+              </Tooltip>
               <Tooltip text="Baobab Studios" position="bottom">
                 <img :src="baobabLogo" alt="Baobab Studios" class="partner-logo no-filter-logo" />
+              </Tooltip>
+              <Tooltip text="Sparko Studio" position="bottom">
+                <img :src="sparkoStudioLogo" alt="Sparko Studio" class="partner-logo no-filter-logo" />
               </Tooltip>
               <Tooltip text="Second Chance Productions LLC" position="bottom">
                 <img :src="secondChanceLogo" alt="Second Chance Productions LLC" class="partner-logo no-filter-logo" />
@@ -44,6 +50,8 @@ import CreatingMadnessLogo from '../assets/partners/CreatingMadness.svg';
 import AstralLabsLogo from '../assets/partners/AstralLabs.svg';
 import BaobabLogo from '../assets/experience/Baobab.svg';
 import SecondChanceLogo from '../assets/experience/SecondChanceProd.svg';
+import NetflixNextWorldLogo from '../assets/experience/NetflixNextWorld.svg';
+import SparkoStudio from '../assets/experience/SparkoStudio.svg';
 
 export default {
   name: 'StrategicSection',
@@ -55,7 +63,9 @@ export default {
       creatingMadnessLogo: CreatingMadnessLogo,
       astralLabsLogo: AstralLabsLogo,
       baobabLogo: BaobabLogo,
-      secondChanceLogo: SecondChanceLogo
+      secondChanceLogo: SecondChanceLogo,
+      netflixNextWorldLogo: NetflixNextWorldLogo,
+      sparkoStudioLogo: SparkoStudio,
     }
   }
 }

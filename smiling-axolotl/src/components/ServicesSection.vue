@@ -11,17 +11,17 @@
       <div class="services-tabs">
         <button
           class="tab-btn"
-          :class="{ active: serviceTab === 'devs' }"
-          @click="setServiceTab('devs')"
-        >
-          {{ $t('ourServices.tabs.developers') }}
-        </button>
-        <button
-          class="tab-btn"
           :class="{ active: serviceTab === 'brands' }"
           @click="setServiceTab('brands')"
         >
           {{ $t('ourServices.tabs.brands') }}
+        </button>
+        <button
+          class="tab-btn"
+          :class="{ active: serviceTab === 'devs' }"
+          @click="setServiceTab('devs')"
+        >
+          {{ $t('ourServices.tabs.developers') }}
         </button>
       </div>
 
@@ -47,7 +47,7 @@ export default {
   name: 'ServicesSection',
   data() {
     return {
-      serviceTab: 'devs',
+      serviceTab: 'brands',
       serviceCardEls: [],
       physState: null,
       inertiaRaf: null,
