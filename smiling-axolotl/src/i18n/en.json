@@ -109,6 +109,20 @@
     "cta": "CONTACT US",
     "socials": "Our Socials"
   },
+  "contact": {
+    "modalTitle": "Get in Touch",
+    "modalSubtitle": "Let's create something amazing together",
+    "subject": "Subject",
+    "subjectPlaceholder": "What would you like to discuss?",
+    "email": "Contact Email",
+    "emailPlaceholder": "your@email.com",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your project or idea...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "successMessage": "Thank you! We'll get back to you soon.",
+    "errorMessage": "Oops! Something went wrong. Please try again."
+  },
   "language": {
     "switch": "Cambiar a Español"
   }

@@ -20,7 +20,7 @@
             </template>
           </i18n-t>
         </p>
-        <CustomButton variant="primary" class="shimmer">{{ $t('hero.cta') }}</CustomButton>
+        <CustomButton variant="primary" class="shimmer" @click="openContactModal">{{ $t('hero.cta') }}</CustomButton>
       </div>
 
       <div class="aquatic-plants">
@@ -28,11 +28,15 @@
         <img :src="rightPlant" class="right" />
       </div>
     </div>
+
+    <!-- Contact Modal -->
+    <ContactModal :isOpen="isContactModalOpen" @close="closeContactModal" />
   </section>
 </template>
 
 <script>
 import CustomButton from './CustomButton.vue';
+import ContactModal from './ContactModal.vue';
 import RobloxLogo from '../assets/hero/Roblox.svg';
 import LeftPlant from '../assets/hero/Left.svg';
 import RightPlant from '../assets/hero/Right.svg';
@@ -40,13 +44,23 @@ import RightPlant from '../assets/hero/Right.svg';
 export default {
   name: 'HeroSection',
   components: {
-    CustomButton
+    CustomButton,
+    ContactModal
   },
   data() {
     return {
       robloxLogo: RobloxLogo,
       leftPlant: LeftPlant,
-      rightPlant: RightPlant
+      rightPlant: RightPlant,
+      isContactModalOpen: false
+    }
+  },
+  methods: {
+    openContactModal() {
+      this.isContactModalOpen = true
+    },
+    closeContactModal() {
+      this.isContactModalOpen = false
     }
   }
 }

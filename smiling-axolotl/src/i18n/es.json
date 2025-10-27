@@ -109,6 +109,20 @@
     "cta": "CONTÁCTANOS",
     "socials": "Nuestras Redes"
   },
+  "contact": {
+    "modalTitle": "Contáctanos",
+    "modalSubtitle": "Creemos algo increíble juntos",
+    "subject": "Asunto",
+    "subjectPlaceholder": "¿De qué te gustaría hablar?",
+    "email": "Correo de Contacto",
+    "emailPlaceholder": "tu@correo.com",
+    "message": "Mensaje",
+    "messagePlaceholder": "Cuéntanos sobre tu proyecto o idea...",
+    "send": "Enviar Mensaje",
+    "sending": "Enviando...",
+    "successMessage": "¡Gracias! Te responderemos pronto.",
+    "errorMessage": "¡Ups! Algo salió mal. Por favor intenta de nuevo."
+  },
   "language": {
     "switch": "Switch to English"
   }
