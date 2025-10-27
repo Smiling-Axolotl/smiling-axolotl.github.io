@@ -1,13 +1,43 @@
 <template>
   <div class="navbar-wrapper">
-    <div ref="navbar" class="sticky-navbar" :class="{ 'is-sticky': isSticky }">
-      <div class="navbar-content">
-        <div class="navbar-left">
+    <div ref="navbar" class="sticky-navbar" :class="{ 'is-sticky': isSticky, 'scrolled': isScrolled }">
+      <div class="navbar-content" :class="{ 'scrolled': isScrolled }">
+        <div class="navbar-left centered-logo" :class="{ 'hidden': isScrolled }">
           <div class="axolotl-logo-svg">
             <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" />
           </div>
           <h1 class="logo-text">SMILING<br>AXOLOTL</h1>
         </div>
+
+        <div class="navbar-left left-logo" :class="{ 'visible': isScrolled }">
+          <div class="axolotl-logo-svg">
+            <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" />
+          </div>
+          <h1 class="logo-text">SMILING<br>AXOLOTL</h1>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="navbar-nav" :class="{ 'visible': isScrolled }">
+          <a href="#home" class="nav-link">{{ $t('nav.home') }}</a>
+          <a href="#about" class="nav-link">{{ $t('nav.about') }}</a>
+          <a href="#services" class="nav-link">{{ $t('nav.services') }}</a>
+          <a href="#contact" class="nav-link">{{ $t('nav.contact') }}</a>
+        </nav>
+
+        <!-- Mobile Hamburger -->
+        <button class="hamburger" :class="{ 'active': mobileMenuOpen, 'visible': isScrolled }" @click="toggleMobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" :class="{ 'open': mobileMenuOpen }">
+        <a href="#home" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.home') }}</a>
+        <a href="#about" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.about') }}</a>
+        <a href="#services" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.services') }}</a>
+        <a href="#contact" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.contact') }}</a>
       </div>
 
       <!-- La curva -->
@@ -21,8 +51,6 @@
     <div class="navbar-spacer" :class="{ 'active': isSticky }"></div>
   </div>
 </template>
-
-<!-- Neta que no supe como hacerlo mas smooth AAAA -->
 <script>
 
 export default {
@@ -32,7 +60,9 @@ export default {
   data() {
     return {
       isSticky: false,
-      scrollY: 0
+      scrollY: 0,
+      isScrolled: false,
+      mobileMenuOpen: false
     }
   },
   mounted() {
@@ -42,6 +72,12 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    toggleMobileMenu() {
+      this.mobileMenuOpen = !this.mobileMenuOpen;
+    },
+    closeMobileMenu() {
+      this.mobileMenuOpen = false;
+    },
     initScrollListener() {
       let ticking = false;
 
@@ -68,11 +104,9 @@ export default {
       const navbarEaseProgress = this.easeOutQuart(navbarProgress);
 
       this.isSticky = this.scrollY > 10;
+      this.isScrolled = this.scrollY > 100;
 
-      // Skip navbar height animation on mobile
-      const isMobile = window.innerWidth <= 768;
-      
-      if (this.$refs.navbar && !isMobile) {
+      if (this.$refs.navbar) {
         const navbar = this.$refs.navbar;
 
         const minHeight = 70;
@@ -81,7 +115,7 @@ export default {
         navbar.style.height = `${currentHeight}px`;
       }
 
-      if (this.$refs.curvePath && !isMobile) {
+      if (this.$refs.curvePath) {
         const scrollProgress = Math.min(this.scrollY / curveMaxScroll, 1);
         const easeProgress = this.easeInOutCubic(scrollProgress);
 
@@ -108,13 +142,12 @@ export default {
         }
       }
 
-      if (this.$refs.navbar && !isMobile) {
+      if (this.$refs.navbar) {
         const spacer = document.querySelector('.navbar-spacer');
         if (spacer) {
           const minHeight = 70;
           const maxHeight = 100;
           const currentHeight = minHeight + (navbarEaseProgress * (maxHeight - minHeight));
-          // Always show spacer since navbar is always fixed
           spacer.style.height = `${currentHeight}px`;
         }
       }
@@ -143,8 +176,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70px; /* Start with smaller height when curved */
-  position: fixed; /* Always fixed */
+  height: 70px; 
+  position: fixed; 
   top: 0;
   left: 0;
   right: 0;
@@ -155,11 +188,13 @@ export default {
 .navbar-content {
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: space-between;
   gap: 1rem;
   position: relative;
   z-index: 1002;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 0 2rem;
   height: 100%;
 }
@@ -168,6 +203,155 @@ export default {
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: opacity 0.4s ease;
+}
+
+.centered-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.centered-logo.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Left Logo */
+.left-logo {
+  position: relative;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.left-logo.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Desktop Navigation */
+.navbar-nav {
+  display: flex;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  margin-left: auto;
+}
+
+.navbar-nav.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1003;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.hamburger.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: #2898ff;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-nav-link {
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.mobile-nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: white;
 }
 
 .axolotl-logo-svg {
@@ -223,6 +407,15 @@ export default {
   .navbar-content {
     padding: 0 1rem;
     transform: translateY(8px); /* Push content down to sit better with curve */
+    justify-content: space-between !important; /* Always space-between on mobile */
+  }
+
+  .navbar-nav {
+    display: none; /* Hide desktop nav on mobile */
+  }
+
+  .hamburger {
+    display: flex; /* Show hamburger on mobile */
   }
 
   .axolotl-logo-svg {
@@ -235,15 +428,11 @@ export default {
   }
 
   .sticky-navbar {
-    height: 60px !important;
-  }
-
-  .navbar-curve {
-    height: 120px; 
+    height: 70px !important;
   }
 
   .navbar-spacer {
-    height: 60px !important; 
+    height: 70px !important; 
   }
 }
 

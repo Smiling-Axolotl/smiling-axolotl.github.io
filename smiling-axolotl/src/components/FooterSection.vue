@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer-section">
+  <footer id="contact" class="footer-section">
     <div class="waves-top">
       <div class="wave-container">
         <svg class="wave-svg wave-1" viewBox="0 0 1440 200" preserveAspectRatio="none">

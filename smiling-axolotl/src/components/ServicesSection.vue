@@ -1,5 +1,5 @@
 <template>
-  <section class="services-section">
+  <section id="services" class="services-section">
     <div class="services-container">
       <h2 class="services-title">
         <i18n-t keypath="ourServices.title" tag="span">

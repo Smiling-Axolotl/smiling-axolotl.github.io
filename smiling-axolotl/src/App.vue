@@ -38,9 +38,14 @@ export default {
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
+          const targetId = this.getAttribute('href').substring(1);
+          const target = document.getElementById(targetId);
           if (target) {
-            target.scrollIntoView({
+            const navbarHeight = 80; // Account for navbar height
+            const targetPosition = target.offsetTop - (targetId === 'contact' ? 0 : navbarHeight);
+            
+            window.scrollTo({
+              top: targetPosition,
               behavior: 'smooth'
             });
           }

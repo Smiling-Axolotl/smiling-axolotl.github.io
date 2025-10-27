@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-section">
+  <section id="home" class="hero-section">
     <div class="white-section">
       <div class="main-content">
         <p class="tagline">{{ $t('hero.tagline') }}</p>

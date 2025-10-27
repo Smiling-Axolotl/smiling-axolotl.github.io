@@ -1,5 +1,5 @@
 <template>
-  <section class="grow-brand-section">
+  <section id="about" class="grow-brand-section">
     <div class="grow-brand-container">
       <h2 class="grow-brand-title">
         <i18n-t keypath="services.title" tag="span">
