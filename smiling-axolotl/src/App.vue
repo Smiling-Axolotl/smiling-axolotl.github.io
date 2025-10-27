@@ -7,6 +7,7 @@
     <StrategicSection />
     <ServicesSection />
     <FooterSection />
+    <LanguageToggle />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import GrowBrandSection from './components/GrowBrandSection.vue';
 import StrategicSection from './components/StrategicSection.vue';
 import ServicesSection from './components/ServicesSection.vue';
 import FooterSection from './components/FooterSection.vue';
+import LanguageToggle from './components/LanguageToggle.vue';
 
 export default {
   name: 'App',
@@ -28,7 +30,8 @@ export default {
     GrowBrandSection,
     StrategicSection,
     ServicesSection,
-    FooterSection
+    FooterSection,
+    LanguageToggle
   },
   methods: {
     initSmoothScrolling() {

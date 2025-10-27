@@ -39,7 +39,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	margin: 3rem auto 0; /* Added top margin to avoid navbar collision */
+	margin: 3rem auto 0;
 	max-width: 600px;
 	padding: 2rem 1rem;
 	position: relative;

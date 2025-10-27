@@ -8,9 +8,6 @@
           </div>
           <h1 class="logo-text">SMILING<br>AXOLOTL</h1>
         </div>
-        <div class="navbar-actions">
-          <LanguageToggle />
-        </div>
       </div>
 
       <!-- La curva -->
@@ -27,12 +24,10 @@
 
 <!-- Neta que no supe como hacerlo mas smooth AAAA -->
 <script>
-import LanguageToggle from './LanguageToggle.vue'
 
 export default {
   name: 'StickyNavbar',
   components: {
-    LanguageToggle
   },
   data() {
     return {
@@ -175,13 +170,6 @@ export default {
   gap: 1rem;
 }
 
-.navbar-actions {
-  display: flex;
-  align-items: center;
-  position: absolute; 
-  right: 2rem; 
-}
-
 .axolotl-logo-svg {
   width: 5rem;
   display: flex;
@@ -237,10 +225,6 @@ export default {
     transform: translateY(8px); /* Push content down to sit better with curve */
   }
 
-  .navbar-actions {
-    right: 1rem;
-  }
-
   .axolotl-logo-svg {
     width: 3.5rem;
   }
@@ -266,10 +250,6 @@ export default {
 @media (max-width: 480px) {
   .navbar-content {
     padding: 0 0.75rem;
-  }
-
-  .navbar-actions {
-    right: 0.75rem;
   }
 
   .axolotl-logo-svg {

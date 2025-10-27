@@ -48,6 +48,13 @@
             </div>
           </div>
           <div class="footer-bottom floating-element-slow">
+            <button 
+              @click="toggleLanguage" 
+              class="footer-language-btn"
+              :title="$t('language.switch')"
+            >
+              {{ currentLang.toUpperCase() }}
+            </button>
             <p class="copyright-bottom-right">© 2025 Smiling Axolotl. All rights reserved.</p>
           </div>
         </div>
@@ -58,14 +65,59 @@
 
 <script>
 import CustomButton from './CustomButton.vue';
+import { setLocale } from '../i18n';
 
 export default {
   name: 'FooterSection',
   components: {
     CustomButton
+  },
+  computed: {
+    currentLang() {
+      return this.$i18n.locale
+    }
+  },
+  methods: {
+    toggleLanguage() {
+      const newLocale = this.$i18n.locale === 'en' ? 'es' : 'en'
+      setLocale(newLocale)
+    }
   }
 }
 </script>
 
 <style scoped>
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.footer-language-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-width: 60px;
+}
+
+.footer-language-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+  .footer-bottom {
+    align-items: center;
+  }
+}
 </style>
