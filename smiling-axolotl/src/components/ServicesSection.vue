@@ -28,7 +28,9 @@
       <transition name="services-switch" mode="out-in" @after-enter="onServicesTabEnter">
         <div class="services-grid" :key="serviceTab">
           <div class="service-card-v2" v-for="(svc, i) in displayedServices" :key="i">
-            <div class="media" aria-hidden="true"></div>
+            <div class="media" aria-hidden="true">
+              <!-- <img :src="svc.image" :alt="$t(svc.titleKey)" /> -->
+            </div>
             <div class="service-card-body">
               <h3 class="service-title" v-html="$t(svc.titleKey)"></h3>
               <p class="service-desc">{{ $t(svc.descKey) }}</p>
@@ -55,6 +57,7 @@ export default {
         {
           titleKey: 'ourServices.brands.concerts.title',
           descKey: 'ourServices.brands.concerts.desc',
+          // image: '/path/to/image.jpg'  
         },
         {
           titleKey: 'ourServices.brands.experiences.title',
@@ -112,12 +115,10 @@ export default {
     setServiceTab(tab) {
       this.serviceTab = tab;
     },
-    // Services cards physics-based inertial swing
     collectServiceCardRefs() {
       this.serviceCardEls = Array.from(document.querySelectorAll('.services-grid .service-card-v2'));
       if (!this.physState) this.physState = new Map();
       const current = new Set(this.serviceCardEls);
-      // prune removed elements
       Array.from(this.physState.keys()).forEach(el => {
         if (!current.has(el)) this.physState.delete(el);
       });
@@ -130,7 +131,6 @@ export default {
     },
     onServicesTabEnter() {
       this.collectServiceCardRefs();
-      // ensure transforms are applied to fresh elements
       this.startInertia();
     },
     onServiceScroll() {
@@ -140,8 +140,7 @@ export default {
       const dt = Math.max(1, now - this.lastTime);
       this.lastScrollY = y;
       this.lastTime = now;
-      // Convert scroll delta into an angular velocity impulse
-      const sensitivity = 0.03; // deg per px
+      const sensitivity = 0.03;
       const impulse = dy * sensitivity;
       this.applyImpulse(impulse);
       this.startInertia();
@@ -172,10 +171,10 @@ export default {
     },
     tickInertia() {
       if (!this.physState || this.physState.size === 0) return this.stopInertia();
-      const dt = 1 / 60; // simulate at ~60Hz
-      const stiffness = 8.5; // spring toward 0 angle
-      const friction = 3.2;  // velocity damping
-      const maxAngle = 6;    // degrees
+      const dt = 1 / 60; 
+      const stiffness = 8.5; 
+      const friction = 3.2; 
+      const maxAngle = 6;  
       let allRest = true;
       this.physState.forEach((s, el) => {
         // spring force toward zero
@@ -196,5 +195,4 @@ export default {
 </script>
 
 <style scoped>
-/* Component-specific overrides can go here if needed */
 </style>
