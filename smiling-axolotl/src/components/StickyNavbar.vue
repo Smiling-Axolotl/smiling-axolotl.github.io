@@ -77,14 +77,12 @@ export default {
       if (this.$refs.navbar) {
         const navbar = this.$refs.navbar;
 
-        // Start with smaller height (70px) when curve is complete, grow to 100px when flattened
-        const minHeight = 70; // Smaller height when curved
-        const maxHeight = 100; // Full height when flat
+        const minHeight = 70;
+        const maxHeight = 100;
         const currentHeight = minHeight + (navbarEaseProgress * (maxHeight - minHeight));
         navbar.style.height = `${currentHeight}px`;
       }
 
-      // Handle curve animation smoothly in both directions
       if (this.$refs.curvePath) {
         const scrollProgress = Math.min(this.scrollY / curveMaxScroll, 1);
         const easeProgress = this.easeInOutCubic(scrollProgress);
@@ -95,21 +93,26 @@ export default {
         const newPath = `M0,0 L1440,0 L1440,${sideHeight} Q720,${curveDepth} 0,${sideHeight} Z`;
         this.$refs.curvePath.setAttribute('d', newPath);
 
-        // Smoothly control the curve container transform
         const curve = this.$refs.navbar.querySelector('.navbar-curve');
         if (curve) {
-          // Animate the transform based on scroll progress with smoother easing
-          const transformProgress = Math.min(this.scrollY / 100, 1); // Faster transition for transform
+          const transformProgress = Math.min(this.scrollY / 100, 1); 
           const transformEaseProgress = this.easeInOutCubic(transformProgress);
-          const translateY = 100 - (transformEaseProgress * 20); // From 100% to 80%
+          const translateY = 100 - (transformEaseProgress * 20); 
           curve.style.transform = `translateY(${translateY}%)`;
+        }
+
+        // El logo tiene que estar un poco mas abajo cuando esta en la curva para compensar
+        const content = this.$refs.navbar.querySelector('.navbar-content');
+        if (content) {
+          const maxNudge = 12; // px
+          const nudge = (1 - easeProgress) * maxNudge; 
+          content.style.transform = `translateY(${nudge}px)`;
         }
       }
 
       if (this.$refs.navbar) {
         const spacer = document.querySelector('.navbar-spacer');
         if (spacer) {
-          // Match the navbar height calculation
           const minHeight = 70;
           const maxHeight = 100;
           const currentHeight = minHeight + (navbarEaseProgress * (maxHeight - minHeight));
@@ -122,7 +125,6 @@ export default {
       return 1 - Math.pow(1 - t, 4);
     },
 
-    // Smoother easing function for curve animation
     easeInOutCubic(t) {
       return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
@@ -157,12 +159,13 @@ export default {
 .navbar-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; 
   gap: 1rem;
   position: relative;
   z-index: 1002;
   width: 100%;
   padding: 0 2rem;
+  height: 100%;
 }
 
 .navbar-left {
@@ -174,6 +177,8 @@ export default {
 .navbar-actions {
   display: flex;
   align-items: center;
+  position: absolute; 
+  right: 2rem; 
 }
 
 .axolotl-logo-svg {
@@ -199,6 +204,7 @@ export default {
   font-weight: normal;
   line-height: 1.1;
   user-select: none;
+  margin: 0; 
 }
 
 .navbar-curve {
