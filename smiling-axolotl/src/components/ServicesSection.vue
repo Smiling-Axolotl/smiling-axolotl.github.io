@@ -1,21 +1,27 @@
 <template>
   <section class="services-section">
     <div class="services-container">
-      <h2 class="services-title">Our <span>Services</span></h2>
+      <h2 class="services-title">
+        <i18n-t keypath="ourServices.title" tag="span">
+          <template #services>
+            <span>{{ $t('ourServices.services') }}</span>
+          </template>
+        </i18n-t>
+      </h2>
       <div class="services-tabs">
         <button
           class="tab-btn"
           :class="{ active: serviceTab === 'devs' }"
           @click="setServiceTab('devs')"
         >
-          For Developers
+          {{ $t('ourServices.tabs.developers') }}
         </button>
         <button
           class="tab-btn"
           :class="{ active: serviceTab === 'brands' }"
           @click="setServiceTab('brands')"
         >
-          For Brands
+          {{ $t('ourServices.tabs.brands') }}
         </button>
       </div>
 
@@ -24,8 +30,8 @@
           <div class="service-card-v2" v-for="(svc, i) in displayedServices" :key="i">
             <div class="media" aria-hidden="true"></div>
             <div class="service-card-body">
-              <h3 class="service-title" v-html="svc.title"></h3>
-              <p class="service-desc">{{ svc.desc }}</p>
+              <h3 class="service-title" v-html="$t(svc.titleKey)"></h3>
+              <p class="service-desc">{{ $t(svc.descKey) }}</p>
             </div>
           </div>
         </div>
@@ -47,38 +53,38 @@ export default {
       lastTime: 0,
       servicesBrands: [
         {
-          title: 'IMMERSIVE<br>CONCERTS',
-          desc: 'Bring your artists and fans together inside interactive 3D worlds',
+          titleKey: 'ourServices.brands.concerts.title',
+          descKey: 'ourServices.brands.concerts.desc',
         },
         {
-          title: 'CUSTOM<br>EXPERIENCES',
-          desc: 'Tailor-made worlds designed around your brand\'s vision',
+          titleKey: 'ourServices.brands.experiences.title',
+          descKey: 'ourServices.brands.experiences.desc',
         },
         {
-          title: 'INTEGRATION &<br>ACTIVATIONS',
-          desc: 'Seamlessly connect your brand with in-game events and systems',
+          titleKey: 'ourServices.brands.integration.title',
+          descKey: 'ourServices.brands.integration.desc',
         },
         {
-          title: 'DIGITAL<br>APPAREL',
-          desc: 'Branded outfits and collectibles that players actually wear',
+          titleKey: 'ourServices.brands.apparel.title',
+          descKey: 'ourServices.brands.apparel.desc',
         },
       ],
       servicesDevs: [
         {
-          title: 'LIVEOPS &<br>MONETIZATION',
-          desc: 'Events, economy design, and systems that scale engagement',
+          titleKey: 'ourServices.devs.liveops.title',
+          descKey: 'ourServices.devs.liveops.desc',
         },
         {
-          title: 'WORLD‑CLASS<br>ART & AUDIO',
-          desc: 'Stylized art direction, characters, VFX, and sound design',
+          titleKey: 'ourServices.devs.art.title',
+          descKey: 'ourServices.devs.art.desc',
         },
         {
-          title: 'ENGINEERING<br>SUPPORT',
-          desc: 'Gameplay, systems, and backend expertise on Roblox',
+          titleKey: 'ourServices.devs.engineering.title',
+          descKey: 'ourServices.devs.engineering.desc',
         },
         {
-          title: 'GO‑TO‑MARKET<br>GROWTH',
-          desc: 'Community, creators, and UA strategies that perform',
+          titleKey: 'ourServices.devs.growth.title',
+          descKey: 'ourServices.devs.growth.desc',
         },
       ]
     }

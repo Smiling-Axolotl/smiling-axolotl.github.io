@@ -46,7 +46,11 @@ export default {
 
     font-family: 'Poppins', sans-serif;
     font-size: 0.95em;
-    white-space: nowrap;
+    white-space: normal; /* Allow text wrapping */
+    max-width: 250px; /* Limit maximum width */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
     z-index: 1000;
     opacity: 0.95;
     pointer-events: none;
@@ -68,12 +72,30 @@ export default {
     right: 100%;
     top: 50%;
     transform: translateX(-8px) translateY(-50%);
+    text-align: right;
 }
 
 .tooltip-content.right {
     left: 100%;
     top: 50%;
     transform: translateX(8px) translateY(-50%);
+    text-align: left;
+}
+
+/* Prevent tooltip from going off-screen on mobile */
+@media (max-width: 768px) {
+    .tooltip-content {
+        max-width: 200px;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    .tooltip-content {
+        max-width: 150px;
+        font-size: 0.8em;
+        padding: 0.3em 0.6em;
+    }
 }
 
 /* Animation */

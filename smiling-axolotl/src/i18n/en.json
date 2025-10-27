@@ -10,7 +10,7 @@
     "title": "BUILDING IMMERSIVE<br>EXPERIENCES",
     "description": "We're an emerging game development studio building immersive {roblox} experiences for {brands}, {artists}, and {communities}.",
     "brands": "brands",
-    "artists": "artists", 
+    "artists": "artists",
     "communities": "communities",
     "cta": "WORK WITH US"
   },
@@ -40,7 +40,7 @@
     "subtitle": "ON A PLATFORM WITH",
     "stats": {
       "dailyUsers": "DAILY ACTIVE<br>USERS",
-      "engagementHours": "ENGAGEMENT<br>HOURS", 
+      "engagementHours": "ENGAGEMENT<br>HOURS",
       "avgRevenue": "AVG. DEVELOPER YEARLY REVENUE",
       "topDevsNote": "(TOP 1,000 DEVS)",
       "robloxSource": "Roblox Investor Relations Q2 2025",
@@ -58,6 +58,50 @@
   "about": {
     "title": "About Smiling Axolotl",
     "description": "We're a passionate team of Roblox developers who understand what makes games truly engaging. Our studio combines creativity with technical expertise to deliver experiences that players love and remember."
+  },
+  "ourServices": {
+    "title": "Our {services}",
+    "services": "Services",
+    "tabs": {
+      "developers": "For Developers",
+      "brands": "For Brands"
+    },
+    "brands": {
+      "concerts": {
+        "title": "Virtual Concerts<br>& Events",
+        "desc": "Live music performances and interactive events that bring thousands of players together in unforgettable experiences."
+      },
+      "experiences": {
+        "title": "Branded<br>Experiences",
+        "desc": "Custom immersive worlds that showcase your brand's identity and engage with millions of active Roblox users."
+      },
+      "integration": {
+        "title": "Product<br>Integration",
+        "desc": "Seamlessly integrate your products into engaging gameplay, creating authentic connections with your audience."
+      },
+      "apparel": {
+        "title": "Digital<br>Apparel",
+        "desc": "Design and launch exclusive virtual fashion items that players can wear and showcase across the platform."
+      }
+    },
+    "devs": {
+      "liveops": {
+        "title": "LiveOps &<br>Management",
+        "desc": "Keep your experience fresh and engaging with ongoing updates, events, and community management."
+      },
+      "art": {
+        "title": "3D Art &<br>Animation",
+        "desc": "Stunning visuals and smooth animations that bring your game world to life with professional polish."
+      },
+      "engineering": {
+        "title": "Technical<br>Engineering",
+        "desc": "Robust systems, optimized performance, and scalable solutions built by experienced Roblox engineers."
+      },
+      "growth": {
+        "title": "Marketing &<br>Growth",
+        "desc": "Strategic marketing campaigns and user acquisition tactics to maximize your game's reach and retention."
+      }
+    }
   },
   "footer": {
     "title": "LET'S BUILD",

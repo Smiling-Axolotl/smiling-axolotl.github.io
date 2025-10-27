@@ -7,7 +7,7 @@
   },
   "hero": {
     "tagline": "CREADO POR JUGADORES PARA JUGADORES",
-    "title": "CONSTRUYENDO EXPERIENCIAS<br>INMERSIVAS",
+    "title": "CREANDO EXPERIENCIAS<br>INMERSIVAS",
     "description": "Somos un estudio emergente de desarrollo de juegos que construye experiencias inmersivas de {roblox} para {brands}, {artists} y {communities}.",
     "brands": "marcas",
     "artists": "artistas",
@@ -59,8 +59,52 @@
     "title": "Acerca de Smiling Axolotl",
     "description": "Somos un equipo apasionado de desarrolladores de Roblox que entiende qué hace que los juegos sean verdaderamente atractivos. Nuestro estudio combina creatividad con experiencia técnica para entregar experiencias que los jugadores aman y recuerdan."
   },
+  "ourServices": {
+    "title": "Nuestros {services}",
+    "services": "Servicios",
+    "tabs": {
+      "developers": "Para Desarrolladores",
+      "brands": "Para Marcas"
+    },
+    "brands": {
+      "concerts": {
+        "title": "Conciertos Virtuales<br>y Eventos",
+        "desc": "Actuaciones musicales en vivo y eventos interactivos que reúnen a miles de jugadores en experiencias inolvidables."
+      },
+      "experiences": {
+        "title": "Experiencias de<br>Marca",
+        "desc": "Mundos inmersivos personalizados que muestran la identidad de tu marca e interactúan con millones de usuarios activos de Roblox."
+      },
+      "integration": {
+        "title": "Integración de<br>Productos",
+        "desc": "Integra tus productos sin problemas en jugabilidad atractiva, creando conexiones auténticas con tu audiencia."
+      },
+      "apparel": {
+        "title": "Indumentaria<br>Digital",
+        "desc": "Diseña y lanza artículos de moda virtual exclusivos que los jugadores pueden usar y mostrar en toda la plataforma."
+      }
+    },
+    "devs": {
+      "liveops": {
+        "title": "LiveOps y<br>Gestión",
+        "desc": "Mantén tu experiencia fresca y atractiva con actualizaciones continuas, eventos y gestión de la comunidad."
+      },
+      "art": {
+        "title": "Arte 3D y<br>Animación",
+        "desc": "Visuales impresionantes y animaciones fluidas que dan vida a tu mundo de juego con acabado profesional."
+      },
+      "engineering": {
+        "title": "Ingeniería<br>Técnica",
+        "desc": "Sistemas robustos, rendimiento optimizado y soluciones escalables construidas por ingenieros experimentados de Roblox."
+      },
+      "growth": {
+        "title": "Marketing y<br>Crecimiento",
+        "desc": "Campañas de marketing estratégicas y tácticas de adquisición de usuarios para maximizar el alcance y retención de tu juego."
+      }
+    }
+  },
   "footer": {
-    "title": "CONSTRUYAMOS",
+    "title": "HAGAMOS",
     "subtitle": "ALGO INCREÍBLE",
     "cta": "CONTÁCTANOS",
     "socials": "Nuestras Redes"

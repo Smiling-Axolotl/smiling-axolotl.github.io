@@ -74,7 +74,10 @@ export default {
 
       this.isSticky = this.scrollY > 10;
 
-      if (this.$refs.navbar) {
+      // Skip navbar height animation on mobile
+      const isMobile = window.innerWidth <= 768;
+      
+      if (this.$refs.navbar && !isMobile) {
         const navbar = this.$refs.navbar;
 
         const minHeight = 70;
@@ -83,7 +86,7 @@ export default {
         navbar.style.height = `${currentHeight}px`;
       }
 
-      if (this.$refs.curvePath) {
+      if (this.$refs.curvePath && !isMobile) {
         const scrollProgress = Math.min(this.scrollY / curveMaxScroll, 1);
         const easeProgress = this.easeInOutCubic(scrollProgress);
 
@@ -110,13 +113,14 @@ export default {
         }
       }
 
-      if (this.$refs.navbar) {
+      if (this.$refs.navbar && !isMobile) {
         const spacer = document.querySelector('.navbar-spacer');
         if (spacer) {
           const minHeight = 70;
           const maxHeight = 100;
           const currentHeight = minHeight + (navbarEaseProgress * (maxHeight - minHeight));
-          spacer.style.height = this.isSticky ? `${currentHeight}px` : '0px';
+          // Always show spacer since navbar is always fixed
+          spacer.style.height = `${currentHeight}px`;
         }
       }
     },
@@ -145,15 +149,12 @@ export default {
   align-items: center;
   justify-content: center;
   height: 70px; /* Start with smaller height when curved */
-  position: relative;
-  z-index: 1000;
-}
-
-.sticky-navbar.is-sticky {
-  position: fixed;
+  position: fixed; /* Always fixed */
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
+  transition: height 0.3s ease;
 }
 
 .navbar-content {
@@ -227,5 +228,60 @@ export default {
 
 .navbar-spacer {
   height: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .navbar-content {
+    padding: 0 1rem;
+    transform: translateY(8px); /* Push content down to sit better with curve */
+  }
+
+  .navbar-actions {
+    right: 1rem;
+  }
+
+  .axolotl-logo-svg {
+    width: 3.5rem;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+    line-height: 1.05;
+  }
+
+  .sticky-navbar {
+    height: 60px !important;
+  }
+
+  .navbar-curve {
+    height: 120px; 
+  }
+
+  .navbar-spacer {
+    height: 60px !important; 
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-content {
+    padding: 0 0.75rem;
+  }
+
+  .navbar-actions {
+    right: 0.75rem;
+  }
+
+  .axolotl-logo-svg {
+    width: 3rem;
+  }
+
+  .logo-text {
+    font-size: 0.85rem;
+  }
+
+  .navbar-left {
+    gap: 0.5rem;
+  }
 }
 </style>
