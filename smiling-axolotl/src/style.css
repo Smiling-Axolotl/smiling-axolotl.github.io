@@ -433,7 +433,7 @@ section:not(#contact) {
 .social-icons {
 	display: flex;
 	gap: 1rem;
-	justify-content: flex-start;
+	justify-content: center;
 }
 
 .social-link {

@@ -47,9 +47,10 @@ export default {
     font-family: 'Poppins', sans-serif;
     font-size: 0.95em;
     white-space: normal; /* Allow text wrapping */
-    max-width: 250px; /* Limit maximum width */
+    max-width: 300px; /* Limit maximum width */
     word-wrap: break-word;
     overflow-wrap: break-word;
+    
     text-align: center;
     z-index: 1000;
     opacity: 0.95;
@@ -86,14 +87,14 @@ export default {
 @media (max-width: 768px) {
     .tooltip-content {
         max-width: 200px;
-        font-size: 0.85em;
+        font-size: 0.9em;
     }
 }
 
 @media (max-width: 480px) {
     .tooltip-content {
         max-width: 150px;
-        font-size: 0.8em;
+        font-size: 0.85em;
         padding: 0.3em 0.6em;
     }
 }

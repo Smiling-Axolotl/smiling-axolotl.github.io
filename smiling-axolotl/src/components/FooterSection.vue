@@ -55,7 +55,7 @@
             >
               {{ currentLang.toUpperCase() }}
             </button>
-            <p class="copyright-bottom-right">© 2025 Smiling Axolotl. All rights reserved.</p>
+            <p class="copyright-bottom-right">{{ $t('footer.copyright') }}</p>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
   "hero": {
     "tagline": "CREADO POR JUGADORES PARA JUGADORES",
     "title": "CREANDO EXPERIENCIAS<br>INMERSIVAS",
-    "description": "Somos un estudio emergente de desarrollo de juegos que construye experiencias inmersivas de {roblox} para {brands}, {artists} y {communities}.",
+    "description": "Somos un estudio emergente de desarrollo de videojuegos que construye experiencias inmersivas de {roblox} para {brands}, {artists} y {communities}.",
     "brands": "marcas",
     "artists": "artistas",
     "communities": "comunidades",
@@ -20,17 +20,17 @@
       "line1": {
         "phrase1": "creadores de experiencias sin alma",
         "phrase2": "temerosos de tomar riesgos",
-        "phrase3": "otra empresa promedio"
+        "phrase3": "otra empresa de desarrollo promedio"
       },
       "line2": {
-        "phrase1": "seguidores de tendencias",
+        "phrase1": "obsesionados con las tendencias",
         "phrase2": "un grupo mediocre",
         "phrase3": "una corporación sin rostro"
       },
       "line3": {
         "phrase1": "imitadores de modas",
         "phrase2": "desarrolladores sin creatividad",
-        "phrase3": "buscadores de excusas"
+        "phrase3": "maestros en buscar excusas"
       }
     }
   },
@@ -40,7 +40,7 @@
     "subtitle": "EN UNA PLATAFORMA CON",
     "stats": {
       "dailyUsers": "USUARIOS ACTIVOS<br>DIARIOS",
-      "engagementHours": "HORAS DE<br>PARTICIPACIÓN",
+      "engagementHours": "HORAS DE<br>JUEGO",
       "avgRevenue": "INGRESOS ANUALES PROMEDIO POR DESARROLLADOR",
       "topDevsNote": "(TOP 1,000 DESAROLLADORES)",
       "robloxSource": "Relaciones con Inversionistas Roblox Q2 2025",
@@ -52,7 +52,7 @@
       "title": "Socios Estratégicos y Alianzas"
     },
     "experience": {
-      "title": "Experiencia que aportan los miembros de nuestro equipo"
+      "title": "Experiencia previa de nuestro equipo"
     }
   },
   "about": {
@@ -76,22 +76,22 @@
         "desc": "Mundos inmersivos personalizados que muestran la identidad de tu marca e interactúan con millones de usuarios activos de Roblox."
       },
       "integration": {
-        "title": "Integración de<br>Productos",
-        "desc": "Integra tus productos sin problemas en jugabilidad atractiva, creando conexiones auténticas con tu audiencia."
+        "title": "Integración y<br>Activaciones",
+        "desc": "Integra tu marca de manera natural dentro del juego, generando una conexión auténtica con tu audiencia."
       },
       "apparel": {
-        "title": "Indumentaria<br>Digital",
+        "title": "Moda<br>Digital",
         "desc": "Diseña y lanza artículos de moda virtual exclusivos que los jugadores pueden usar y mostrar en toda la plataforma."
       }
     },
     "devs": {
       "liveops": {
         "title": "LiveOps y<br>Gestión",
-        "desc": "Mantén tu experiencia fresca y atractiva con actualizaciones continuas, eventos y gestión de la comunidad."
+        "desc": "Mantén tu experiencia como nueva con actualizaciones continuas, eventos y gestión de la comunidad."
       },
-      "art": {
-        "title": "Arte 3D y<br>Animación",
-        "desc": "Visuales impresionantes y animaciones fluidas que dan vida a tu mundo de juego con acabado profesional."
+      "brands": {
+        "title": "Colaboraciones con<br>Marcas",
+        "desc": "Conecta con marcas que buscan experiencias únicas dentro de tus juegos."
       },
       "engineering": {
         "title": "Ingeniería<br>Técnica",
@@ -107,7 +107,8 @@
     "title": "HAGAMOS",
     "subtitle": "ALGO INCREÍBLE",
     "cta": "CONTÁCTANOS",
-    "socials": "Nuestras Redes"
+    "socials": "Nuestras Redes",
+    "copyright": "© 2025 Smiling Axolotl. Todos los derechos reservados."
   },
   "contact": {
     "modalTitle": "Contáctanos",

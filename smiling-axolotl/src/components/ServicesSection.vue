@@ -29,7 +29,7 @@
         <div class="services-grid" :key="serviceTab">
           <div class="service-card-v2" v-for="(svc, i) in displayedServices" :key="i">
             <div class="media" aria-hidden="true">
-              <!-- <img :src="svc.image" :alt="$t(svc.titleKey)" /> -->
+              <img :src="svc.image" :alt="$t(svc.titleKey)" />
             </div>
             <div class="service-card-body">
               <h3 class="service-title" v-html="$t(svc.titleKey)"></h3>
@@ -43,6 +43,16 @@
 </template>
 
 <script>
+
+import ConcertBanner from '../assets/services/ConcertBanner.png';
+import IntegrationBanner from '../assets/services/IntegrationBanner.png';
+import ManagmentBanner from '../assets/services/ManagmentBanner.png';
+import StatsBanner from '../assets/services/StatsBanner.png';
+import BrandBanner from '../assets/services/BrandBanner.png';
+import DevBanner from '../assets/services/DevBanner.png';
+import BrandedBanner from '../assets/services/BrandedBanner.png';
+import UGCBanner from '../assets/services/UGCBanner.png';
+
 export default {
   name: 'ServicesSection',
   data() {
@@ -57,37 +67,44 @@ export default {
         {
           titleKey: 'ourServices.brands.concerts.title',
           descKey: 'ourServices.brands.concerts.desc',
-          // image: '/path/to/image.jpg'  
+          image: ConcertBanner,
         },
         {
           titleKey: 'ourServices.brands.experiences.title',
           descKey: 'ourServices.brands.experiences.desc',
+          image: BrandedBanner,
         },
         {
           titleKey: 'ourServices.brands.integration.title',
           descKey: 'ourServices.brands.integration.desc',
+          image: IntegrationBanner,
         },
         {
           titleKey: 'ourServices.brands.apparel.title',
           descKey: 'ourServices.brands.apparel.desc',
+          image: UGCBanner,
         },
       ],
       servicesDevs: [
         {
           titleKey: 'ourServices.devs.liveops.title',
           descKey: 'ourServices.devs.liveops.desc',
+          image: ManagmentBanner,
         },
         {
-          titleKey: 'ourServices.devs.art.title',
-          descKey: 'ourServices.devs.art.desc',
+          titleKey: 'ourServices.devs.brands.title',
+          descKey: 'ourServices.devs.brands.desc',
+          image: BrandBanner,
         },
         {
           titleKey: 'ourServices.devs.engineering.title',
           descKey: 'ourServices.devs.engineering.desc',
+          image: DevBanner,
         },
         {
           titleKey: 'ourServices.devs.growth.title',
           descKey: 'ourServices.devs.growth.desc',
+          image: StatsBanner,
         },
       ]
     }
