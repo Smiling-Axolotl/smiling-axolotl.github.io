@@ -115,7 +115,7 @@
     "subject": "Asunto",
     "subjectPlaceholder": "¿De qué te gustaría hablar?",
     "email": "Correo de Contacto",
-    "emailPlaceholder": "tu@correo.com",
+    "emailPlaceholder": "tu{'@'}correo.com",
     "message": "Mensaje",
     "messagePlaceholder": "Cuéntanos sobre tu proyecto o idea...",
     "send": "Enviar Mensaje",

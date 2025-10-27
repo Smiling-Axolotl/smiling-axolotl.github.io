@@ -115,7 +115,7 @@
     "subject": "Subject",
     "subjectPlaceholder": "What would you like to discuss?",
     "email": "Contact Email",
-    "emailPlaceholder": "your@email.com",
+    "emailPlaceholder": "your{'@'}email.com",
     "message": "Message",
     "messagePlaceholder": "Tell us about your project or idea...",
     "send": "Send Message",
