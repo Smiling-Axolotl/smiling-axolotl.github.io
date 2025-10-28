@@ -67,7 +67,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="submit-button" :disabled="isSubmitting">
+            <button aria-label="Submit" type="submit" class="submit-button" :disabled="isSubmitting">
               <span v-if="!isSubmitting">{{ $t('contact.send') }}</span>
               <span v-else>{{ $t('contact.sending') }}</span>
             </button>

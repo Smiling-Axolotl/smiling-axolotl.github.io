@@ -1,5 +1,5 @@
 <template>
-    <button :class="['app-btn', variant, extraClass]">
+    <button :class="['app-btn', variant, extraClass]" :aria-label="ariaLabel">
         <slot />
     </button>
 </template>
@@ -13,6 +13,10 @@ export default {
             default: 'primary', // 'primary' or 'secondary'
         },
         extraClass: {
+            type: String,
+            default: '',
+        },
+        ariaLabel: {
             type: String,
             default: '',
         },

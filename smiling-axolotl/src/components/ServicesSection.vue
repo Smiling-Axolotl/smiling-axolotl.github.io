@@ -13,6 +13,7 @@
           class="tab-btn"
           :class="{ active: serviceTab === 'brands' }"
           @click="setServiceTab('brands')"
+          aria-label="Brands Services Tab"
         >
           {{ $t('ourServices.tabs.brands') }}
         </button>
@@ -20,6 +21,7 @@
           class="tab-btn"
           :class="{ active: serviceTab === 'devs' }"
           @click="setServiceTab('devs')"
+          aria-label="Developers Services Tab"
         >
           {{ $t('ourServices.tabs.developers') }}
         </button>
@@ -29,7 +31,7 @@
         <div class="services-grid" :key="serviceTab">
           <div class="service-card-v2" v-for="(svc, i) in displayedServices" :key="i">
             <div class="media" aria-hidden="true">
-              <img :src="svc.image" :alt="$t(svc.titleKey)" />
+              <img :src="svc.image" :alt="$t(svc.titleKey)" fetchpriority="low" />
             </div>
             <div class="service-card-body">
               <h3 class="service-title" v-html="$t(svc.titleKey)"></h3>

@@ -3,6 +3,7 @@
     <button 
       @click="toggleLanguage" 
       class="language-button"
+      aria-label="Switch Language"
       :title="$t('language.switch')"
     >
       <span class="lang-code">{{ currentLang.toUpperCase() }}</span>

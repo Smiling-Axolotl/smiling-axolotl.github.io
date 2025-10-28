@@ -4,28 +4,28 @@
       <div class="navbar-content" :class="{ 'scrolled': isScrolled }">
         <div class="navbar-left centered-logo" :class="{ 'hidden': isScrolled }">
           <div class="axolotl-logo-svg">
-            <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" />
+            <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" fetchpriority="high" />
           </div>
           <h1 class="logo-text">SMILING<br>AXOLOTL</h1>
         </div>
 
         <div class="navbar-left left-logo" :class="{ 'visible': isScrolled }">
           <div class="axolotl-logo-svg">
-            <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" />
+            <img src="../assets/logoAxolotl.svg" alt="Axolotl Face" class="logo-svg" fetchpriority="high" />
           </div>
           <h1 class="logo-text">SMILING<br>AXOLOTL</h1>
         </div>
 
         <!-- Desktop Navigation -->
         <nav class="navbar-nav" :class="{ 'visible': isScrolled }">
-          <a href="#home" class="nav-link">{{ $t('nav.home') }}</a>
-          <a href="#about" class="nav-link">{{ $t('nav.about') }}</a>
-          <a href="#services" class="nav-link">{{ $t('nav.services') }}</a>
-          <a href="#contact" class="nav-link">{{ $t('nav.contact') }}</a>
+          <a aria-label="Home" href="#home" class="nav-link">{{ $t('nav.home') }}</a>
+          <a aria-label="About" href="#about" class="nav-link">{{ $t('nav.about') }}</a>
+          <a aria-label="Services" href="#services" class="nav-link">{{ $t('nav.services') }}</a>
+          <a aria-label="Contact" href="#contact" class="nav-link">{{ $t('nav.contact') }}</a>
         </nav>
 
         <!-- Mobile Hamburger -->
-        <button class="hamburger" :class="{ 'active': mobileMenuOpen, 'visible': isScrolled }" @click="toggleMobileMenu">
+        <button aria-label="Open Menu" class="hamburger" :class="{ 'active': mobileMenuOpen, 'visible': isScrolled }" @click="toggleMobileMenu">
           <span></span>
           <span></span>
           <span></span>
@@ -34,15 +34,15 @@
 
       <!-- Mobile Menu -->
       <div class="mobile-menu" :class="{ 'open': mobileMenuOpen }">
-        <a href="#home" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.home') }}</a>
-        <a href="#about" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.about') }}</a>
-        <a href="#services" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.services') }}</a>
-        <a href="#contact" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.contact') }}</a>
+        <a aria-label="Home" href="#home" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.home') }}</a>
+        <a aria-label="About" href="#about" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.about') }}</a>
+        <a aria-label="Services" href="#services" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.services') }}</a>
+        <a aria-label="Contact" href="#contact" class="mobile-nav-link" @click="closeMobileMenu">{{ $t('nav.contact') }}</a>
       </div>
 
       <!-- La curva -->
       <div class="navbar-curve">
-        <svg class="curve-svg" viewBox="0 0 1440 200" preserveAspectRatio="none">
+        <svg class="curve-svg" viewBox="0 0 1440 200" preserveAspectRatio="none" fetchpriority="high">
           <path ref="curvePath" d="M0,0 L1440,0 L1440,50 Q720,0 0,50 Z" fill="#2898ff" />
         </svg>
       </div>
