@@ -76,8 +76,8 @@
         "desc": "Custom immersive worlds that showcase your brand's identity and engage with millions of active Roblox users."
       },
       "integration": {
-        "title": "Product<br>Integration",
-        "desc": "Seamlessly integrate your products into engaging gameplay, creating authentic connections with your audience."
+        "title": "Integration &<br>Activations",
+        "desc": "Seamlessly connect your brand into engaging gameplay, creating authentic connections with your audience."
       },
       "apparel": {
         "title": "Digital<br>Apparel",
@@ -89,9 +89,9 @@
         "title": "LiveOps &<br>Management",
         "desc": "Keep your experience fresh and engaging with ongoing updates, events, and community management."
       },
-      "art": {
-        "title": "3D Art &<br>Animation",
-        "desc": "Stunning visuals and smooth animations that bring your game world to life with professional polish."
+      "brands": {
+        "title": "Brand<br>Collaborations",
+        "desc": "Connect with brands looking for unique in-game experiences."
       },
       "engineering": {
         "title": "Technical<br>Engineering",
@@ -107,7 +107,8 @@
     "title": "LET'S BUILD",
     "subtitle": "SOMETHING AMAZING",
     "cta": "CONTACT US",
-    "socials": "Our Socials"
+    "socials": "Our Socials",
+    "copyright": "© 2025 Smiling Axolotl. All rights reserved."
   },
   "contact": {
     "modalTitle": "Get in Touch",

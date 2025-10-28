@@ -67,7 +67,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="submit-button" :disabled="isSubmitting">
+            <button aria-label="Submit" type="submit" class="submit-button" :disabled="isSubmitting">
               <span v-if="!isSubmitting">{{ $t('contact.send') }}</span>
               <span v-else>{{ $t('contact.sending') }}</span>
             </button>
@@ -304,7 +304,7 @@ export default {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .form-group input:focus,

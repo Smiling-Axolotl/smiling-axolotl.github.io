@@ -20,12 +20,12 @@
             </template>
           </i18n-t>
         </p>
-        <CustomButton variant="primary" class="shimmer" @click="openContactModal">{{ $t('hero.cta') }}</CustomButton>
+        <CustomButton aria-label="Contact Us" variant="primary" class="shimmer" @click="openContactModal">{{ $t('hero.cta') }}</CustomButton>
       </div>
 
       <div class="aquatic-plants">
-        <img :src="leftPlant" class="left" />
-        <img :src="rightPlant" class="right" />
+        <img :src="leftPlant" class="left" alt="" fetchpriority="high" />
+        <img :src="rightPlant" class="right" alt="" fetchpriority="high" />
       </div>
     </div>
 
