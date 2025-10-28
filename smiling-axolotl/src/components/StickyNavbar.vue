@@ -308,18 +308,20 @@ export default {
   background: white;
   border-radius: 2px;
   transition: all 0.3s ease;
+  transform-origin: center;
 }
 
 .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(8px, 8px);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
 .hamburger.active span:nth-child(2) {
   opacity: 0;
+  transform: scale(0);
 }
 
 .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Mobile Menu */
