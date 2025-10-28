@@ -104,7 +104,13 @@ export default {
       const navbarEaseProgress = this.easeOutQuart(navbarProgress);
 
       this.isSticky = this.scrollY > 10;
+      const wasScrolled = this.isScrolled;
       this.isScrolled = this.scrollY > 100;
+      
+      // Close mobile menu when scrolling to the top
+      if (wasScrolled && !this.isScrolled && this.mobileMenuOpen) {
+        this.mobileMenuOpen = false;
+      }
 
       if (this.$refs.navbar) {
         const navbar = this.$refs.navbar;
