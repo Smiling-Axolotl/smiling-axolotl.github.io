@@ -108,6 +108,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  min-height: 35vh;
   gap: 0.75rem;
 }
 
@@ -135,6 +136,7 @@ export default {
 @media (max-width: 992px) {
   .footer-bottom {
     align-items: center;
+    min-height: 15vh;
   }
 }
 </style>

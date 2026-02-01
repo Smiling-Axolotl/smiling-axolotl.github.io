@@ -146,24 +146,24 @@ section:not(#contact) {
 
 .stat-card {
 	background: #e8e8e8;
-	border-radius: 12px;
-	padding: 2rem 1.5rem;
+	padding: 3rem 2rem;
 	width: 320px; /* Fixed width for all cards */
 	text-align: center;
 	position: relative;
 	box-sizing: border-box;
+	border-radius: 40%;
 }
 
 .stat-number {
 	font-family: "Dela Gothic One", cursive;
 	font-size: 3.5rem;
 	color: #2898ff;
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.2rem;
 }
 
 .stat-label {
 	font-family: "Dela Gothic One", cursive;
-	font-size: 1.15rem;
+	font-size: 1.2rem;
 	color: #1a1a1a;
 	line-height: 1.2;
 	text-transform: uppercase;
@@ -329,12 +329,14 @@ section:not(#contact) {
 }
 
 .footer-left {
-	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
 }
 
 .footer-title {
 	font-family: "Dela Gothic One", cursive;
-	font-size: 3.5rem;
+	font-size: 4rem;
 	color: white;
 	line-height: 1.1;
 	margin-bottom: 2rem;
@@ -347,6 +349,7 @@ section:not(#contact) {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
+	margin-top: auto;
 }
 
 .contact-btn {

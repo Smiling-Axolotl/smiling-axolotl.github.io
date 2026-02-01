@@ -3,16 +3,16 @@
     "home": "Inicio",
     "about": "Nosotros",
     "services": "Servicios",
-    "contact": "Contacto"
+    "contact": "CREEMOS JUNTOS"
   },
   "hero": {
     "tagline": "CREADO POR JUGADORES PARA JUGADORES",
-    "title": "CREANDO EXPERIENCIAS<br>INMERSIVAS",
-    "description": "Somos un estudio emergente de desarrollo de videojuegos que construye experiencias inmersivas de {roblox} para {brands}, {artists} y {communities}.",
+    "title": "EXPERIENCIAS<br/>INOLVIDABLES",
+    "description": "Desarrollamos experiencias interactivas de {roblox} para {brands}, {artists} y {communities}.",
     "brands": "marcas",
     "artists": "artistas",
     "communities": "comunidades",
-    "cta": "TRABAJA CON NOSOTROS"
+    "cta": "CONSTRUYAMOS JUNTOS"
   },
   "banner": {
     "title": "NO SOMOS",
@@ -108,7 +108,7 @@
     "subtitle": "ALGO INCREÍBLE",
     "cta": "CONTÁCTANOS",
     "socials": "Nuestras Redes",
-    "copyright": "© 2025 Smiling Axolotl. Todos los derechos reservados."
+    "copyright": "© 2026 Smiling Axolotl. Todos los derechos reservados."
   },
   "contact": {
     "modalTitle": "Contáctanos",

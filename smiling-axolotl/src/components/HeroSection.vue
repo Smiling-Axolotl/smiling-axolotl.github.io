@@ -20,12 +20,13 @@
             </template>
           </i18n-t>
         </p>
-        <CustomButton aria-label="Contact Us" variant="primary" class="shimmer" @click="openContactModal">{{ $t('hero.cta') }}</CustomButton>
-      </div>
-
-      <div class="aquatic-plants">
-        <img :src="leftPlant" class="left" alt="" fetchpriority="high" />
-        <img :src="rightPlant" class="right" alt="" fetchpriority="high" />
+        <CustomButton
+          aria-label="Contact Us"
+          variant="tertiary" class="shimmer"
+          @click="openContactModal"
+        >
+          {{ $t('hero.cta') }}
+        </CustomButton>
       </div>
     </div>
 
@@ -38,8 +39,6 @@
 import CustomButton from './CustomButton.vue';
 import ContactModal from './ContactModal.vue';
 import RobloxLogo from '../assets/hero/Roblox.svg';
-import LeftPlant from '../assets/hero/Left.svg';
-import RightPlant from '../assets/hero/Right.svg';
 
 export default {
   name: 'HeroSection',
@@ -50,8 +49,6 @@ export default {
   data() {
     return {
       robloxLogo: RobloxLogo,
-      leftPlant: LeftPlant,
-      rightPlant: RightPlant,
       isContactModalOpen: false
     }
   },

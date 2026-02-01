@@ -77,7 +77,6 @@ export default {
 
 .app-btn:hover {
     transform: translateY(-2px);
-    outline: none;
 }
 
 .app-btn:active {
@@ -97,13 +96,26 @@ export default {
 .app-btn.secondary {
     background: white;
     color: #2898FF;
-    border: 2px solid #2898FF;
+    outline: 2px solid #2898FF;
 }
 
 .app-btn.secondary:hover {
     background: #2898FF;
     color: white;
-    border: 2px solid #2898FF;
+    outline: 2px solid white;
     box-shadow: 0 0 0 2px white;
 }
+
+.app-btn.tertiary {
+    background: #FAC020;
+    color: #1A1A1A;
+}
+
+.app-btn.tertiary:hover {
+    background: #1A1A1A;
+    color: #FAC020;
+    outline: 2px solid #FAC020;
+    box-shadow: 0 0 20px rgba(255, 255, 255, .3);
+}
+
 </style>
