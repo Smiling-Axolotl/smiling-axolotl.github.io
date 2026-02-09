@@ -132,6 +132,8 @@
     "projects": "PROJECTS",
     "discover": "DISCOVER MORE",
     "previous": "Previous project",
-    "next": "Next project"
+    "next": "Next project",
+    "close": "Close project details",
+    "visit": "VISIT PROJECT"
   }
 }

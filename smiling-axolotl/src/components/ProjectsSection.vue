@@ -32,9 +32,11 @@
               class="project-card"
               :class="{ 
                 'center': isCenterCard(index),
-                'side': !isCenterCard(index)
+                'side': !isCenterCard(index),
+                'expanded': selectedProject && selectedProject.index === index
               }"
               :style="{ width: cardWidth + 'px' }"
+              @click="isCenterCard(index) && !selectedProject ? openProjectModal(project, index) : null"
             >
               <div class="project-image-container">
                 <img 
@@ -87,11 +89,66 @@
         </svg>
       </CustomButton>
     </div>
+
+    <!-- Project Modal -->
+    <Transition name="modal">
+      <div v-if="selectedProject" class="modal-overlay" @click="closeProjectModal">
+        <div class="modal-container" @click.stop>
+          <div class="modal-card" :style="{ width: modalCardWidth + 'px' }">
+            <div class="modal-image-container">
+              <img 
+                :src="selectedProject.project.image" 
+                :alt="selectedProject.project.title"
+                class="modal-image"
+              />
+            </div>
+            <div class="modal-details">
+              <button class="modal-close" @click="closeProjectModal" :aria-label="$t('projects.close')">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              
+              <div class="modal-badges">
+                <span 
+                  v-for="(badge, badgeIndex) in selectedProject.project.badges" 
+                  :key="badgeIndex"
+                  class="project-badge"
+                  :class="`badge-${badge.toLowerCase()}`"
+                >
+                  {{ badge }}
+                </span>
+              </div>
+              
+              <h3 class="modal-title">{{ selectedProject.project.title }}</h3>
+              
+              <p class="modal-description">{{ selectedProject.project.description }}</p>
+              
+              <CustomButton 
+                v-if="selectedProject.project.url"
+                variant="tertiary" 
+                class="shimmer modal-visit-btn"
+                @click="visitProject(selectedProject.project.url)"
+                :aria-label="$t('projects.visit')"
+              >
+                {{ $t('projects.visit') }}
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </CustomButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Transition>
   </section>
 </template>
 
 <script>
 import CustomButton from './CustomButton.vue';
+
+// Import all project JSON files dynamically
+const projectModules = import.meta.glob('../data/projects/*.json', { eager: true });
 
 export default {
   name: 'ProjectsSection',
@@ -105,34 +162,13 @@ export default {
       transitionEnabled: true,
       cardWidth: 400,
       cardGap: 32,
-      projects: [
-        {
-          title: 'Brasa, Border Shefy',
-          image: new URL('../assets/projects/project1.svg', import.meta.url).href,
-          badges: ['PARTNERSHIP', 'THIRD-PARTY']
-        },
-        {
-          title: 'Be a Wizard! Tycoon!',
-          image: new URL('../assets/projects/project2.svg', import.meta.url).href,
-          badges: ['OWNERSHIP']
-        },
-        {
-          title: 'Catch The Brainrot',
-          image: new URL('../assets/projects/project3.svg', import.meta.url).href,
-          badges: ['PARTNERSHIP', 'THIRD-PARTY']
-        },
-        {
-          title: 'Wizard Academy',
-          image: new URL('../assets/projects/project2.svg', import.meta.url).href,
-          badges: ['OWNERSHIP', 'GAME-JAM']
-        },
-        {
-          title: 'Space Adventure',
-          image: new URL('../assets/projects/project1.svg', import.meta.url).href,
-          badges: ['PARTNERSHIP']
-        }
-      ]
+      selectedProject: null,
+      projects: []
     }
+  },
+  created() {
+    // Load projects from JSON files
+    this.loadProjects();
   },
   mounted() {
     // Start at the first real slide (after clones)
@@ -160,9 +196,26 @@ export default {
     },
     totalProjects() {
       return this.projects.length;
+    },
+    modalCardWidth() {
+      const width = window.innerWidth;
+      if (width <= 480) return 320;
+      if (width <= 768) return 500;
+      if (width <= 1024) return 600;
+      return 700;
     }
   },
   methods: {
+    loadProjects() {
+      // Convert imported modules to project array
+      this.projects = Object.values(projectModules).map(module => ({
+        title: module.default.title,
+        image: module.default.image,
+        badges: module.default.tags,
+        description: module.default.description,
+        url: module.default.url
+      }));
+    },
     updateCardDimensions() {
       const width = window.innerWidth;
       if (width <= 480) {
@@ -184,6 +237,17 @@ export default {
     isCenterCard(index) {
       // The center card is the one at currentSlide
       return index === this.currentSlide;
+    },
+    openProjectModal(project, index) {
+      this.selectedProject = { project, index };
+      document.body.style.overflow = 'hidden';
+    },
+    closeProjectModal() {
+      this.selectedProject = null;
+      document.body.style.overflow = '';
+    },
+    visitProject(url) {
+      window.open(url, '_blank');
     },
     nextSlide() {
       if (this.isAnimating) return;
@@ -321,6 +385,11 @@ export default {
   transform: scale(1.1);
   opacity: 1;
   z-index: 10;
+  cursor: pointer;
+}
+
+.project-card.expanded {
+  visibility: hidden;
 }
 
 .project-card.side {
@@ -471,6 +540,163 @@ export default {
   height: 20px;
 }
 
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.modal-image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-details {
+  padding: 2rem;
+  position: relative;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: #FF4757;
+  transform: scale(1.1);
+}
+
+.modal-close svg {
+  width: 20px;
+  height: 20px;
+  color: #1a1a1a;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover svg {
+  color: white;
+}
+
+.modal-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-family: 'Dela Gothic One', cursive;
+  font-size: 1.8rem;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.modal-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.modal-visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-visit-btn .btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Modal Transitions */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.modal-enter-active .modal-card,
+.modal-leave-active .modal-card {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-card {
+  transform: scale(0.7) translateY(-10px);
+  opacity: 0;
+}
+
+.modal-leave-to .modal-card {
+  transform: scale(0.7) translateY(-10px);
+  opacity: 0;
+}
+
 /* Mobile responsive */
 @media (max-width: 1024px) {
   .project-card.center {
@@ -530,6 +756,23 @@ export default {
     font-size: 0.6rem;
     padding: 0.3rem 0.7rem;
   }
+
+  .modal-overlay {
+    padding: 1rem;
+  }
+
+  .modal-details {
+    padding: 1.5rem;
+    max-height: 300px;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
+  }
+
+  .modal-description {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -553,6 +796,31 @@ export default {
   .carousel-nav {
     width: 45px;
     height: 45px;
+  }
+
+  .modal-details {
+    padding: 1rem;
+    max-height: 250px;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+  }
+
+  .modal-description {
+    font-size: 0.85rem;
+  }
+
+  .modal-close {
+    width: 35px;
+    height: 35px;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .modal-close svg {
+    width: 18px;
+    height: 18px;
   }
 }
 </style>
