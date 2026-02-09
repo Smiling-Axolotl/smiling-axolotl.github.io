@@ -23,15 +23,16 @@
         <div class="carousel-track-container">
           <div 
             class="carousel-track" 
+            :style="trackStyle"
             :class="{ 'animating': isAnimating }"
           >
             <div 
-              v-for="(project, index) in visibleProjects" 
-              :key="`${project.title}-${index}`"
+              v-for="(project, index) in displayProjects" 
+              :key="`${index}-${project.title}`"
               class="project-card"
               :class="{ 
-                'center': index === 1,
-                'side': index !== 1 
+                'center': isCenterCard(index),
+                'side': !isCenterCard(index)
               }"
             >
               <div class="project-image-container">
@@ -98,10 +99,12 @@ export default {
   },
   data() {
     return {
-      currentIndex: 0,
+      currentSlide: 0,
       isAnimating: false,
-      slideDirection: '',
-      allProjects: [
+      transitionEnabled: true,
+      cardWidth: 400,
+      cardGap: 32,
+      projects: [
         {
           title: 'Brasa, Border Shefy',
           image: new URL('../assets/projects/project1.svg', import.meta.url).href,
@@ -130,43 +133,94 @@ export default {
       ]
     }
   },
+  mounted() {
+    // Start at the first real slide (after clones)
+    this.currentSlide = this.projects.length;
+    this.updateCardDimensions();
+    window.addEventListener('resize', this.updateCardDimensions);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.updateCardDimensions);
+  },
   computed: {
-    visibleProjects() {
-      const total = this.allProjects.length;
-      const prev = (this.currentIndex - 1 + total) % total;
-      const curr = this.currentIndex;
-      const next = (this.currentIndex + 1) % total;
+    displayProjects() {
+      // Clone projects at start and end for infinite loop
+      return [...this.projects, ...this.projects, ...this.projects];
+    },
+    trackStyle() {
+      // Calculate the offset to keep the current card centered
+      const offset = this.currentSlide * (this.cardWidth + this.cardGap);
       
-      return [
-        this.allProjects[prev],
-        this.allProjects[curr],
-        this.allProjects[next]
-      ];
+      return {
+        transform: `translateX(calc(-${offset}px - ${this.cardWidth / 2}px))`,
+        transition: this.transitionEnabled ? 'transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)' : 'none'
+      }
+    },
+    totalProjects() {
+      return this.projects.length;
     }
   },
   methods: {
+    updateCardDimensions() {
+      const width = window.innerWidth;
+      if (width <= 480) {
+        this.cardWidth = 280;
+        this.cardGap = 16; // 1rem
+      } else if (width <= 768) {
+        this.cardWidth = 300;
+        this.cardGap = 24; // 1.5rem
+      } else if (width <= 1024) {
+        this.cardWidth = 350;
+        this.cardGap = 32; // 2rem
+      } else {
+        this.cardWidth = 400;
+        this.cardGap = 32; // 2rem
+      }
+    },
+    isCenterCard(index) {
+      // The center card is the one at currentSlide
+      return index === this.currentSlide;
+    },
     nextSlide() {
       if (this.isAnimating) return;
       this.isAnimating = true;
-      this.slideDirection = 'next';
+      this.transitionEnabled = true;
       
-      this.currentIndex = (this.currentIndex + 1) % this.allProjects.length;
+      this.currentSlide++;
       
       setTimeout(() => {
+        // If we've reached the end of the second set, jump to the start of the first set
+        if (this.currentSlide >= this.totalProjects * 2) {
+          this.transitionEnabled = false;
+          this.currentSlide = this.totalProjects;
+          
+          // Re-enable transitions after a brief delay
+          setTimeout(() => {
+            this.transitionEnabled = true;
+          }, 50);
+        }
         this.isAnimating = false;
-        this.slideDirection = '';
       }, 600);
     },
     prevSlide() {
       if (this.isAnimating) return;
       this.isAnimating = true;
-      this.slideDirection = 'prev';
+      this.transitionEnabled = true;
       
-      this.currentIndex = (this.currentIndex - 1 + this.allProjects.length) % this.allProjects.length;
+      this.currentSlide--;
       
       setTimeout(() => {
+        // If we've reached the start of the first set, jump to the end of the second set
+        if (this.currentSlide < this.totalProjects) {
+          this.transitionEnabled = false;
+          this.currentSlide = this.totalProjects * 2 - 1;
+          
+          // Re-enable transitions after a brief delay
+          setTimeout(() => {
+            this.transitionEnabled = true;
+          }, 50);
+        }
         this.isAnimating = false;
-        this.slideDirection = '';
       }, 600);
     },
     discoverMore() {
@@ -177,11 +231,37 @@ export default {
 </script>
 
 <style scoped>
+:root {
+  --project-card-width: 400px;
+  --project-card-gap: 2rem;
+}
+
 .projects-section {
   background: white;
   padding: 5rem 0;
   position: relative;
   overflow: hidden;
+}
+
+.projects-section::before,
+.projects-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.projects-section::before {
+  left: 0;
+  background: linear-gradient(to right, white 0%, transparent 100%);
+}
+
+.projects-section::after {
+  right: 0;
+  background: linear-gradient(to left, white 0%, transparent 100%);
 }
 
 .projects-container {
@@ -218,53 +298,41 @@ export default {
   padding: 2rem 0;
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 350px;
 }
 
 .carousel-track {
   display: flex;
-  gap: 2rem;
+  gap: var(--project-card-gap, 2rem);
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  position: relative;
-}
-
-.carousel-track.animating .project-card {
-  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  position: absolute;
+  left: 50%;
 }
 
 .project-card {
+  width: var(--project-card-width, 400px);
   flex-shrink: 0;
   cursor: pointer;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.project-card.side {
-  width: 28%;
-  opacity: 0.6;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(0.85);
+  opacity: 0.6;
 }
 
 .project-card.center {
-  width: 38%;
+  transform: scale(1.1);
   opacity: 1;
-  transform: scale(1);
   z-index: 10;
+}
+
+.project-card.side {
+  transform: scale(0.85);
+  opacity: 0.6;
 }
 
 .project-card:hover {
   opacity: 1;
-}
-
-.project-card.center:hover {
-  transform: scale(1.03);
-}
-
-.project-card.side:hover {
-  transform: scale(0.88);
 }
 
 .project-image-container {
@@ -274,10 +342,6 @@ export default {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.project-card.center .project-image-container {
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .project-image {
@@ -298,6 +362,7 @@ export default {
   right: 0;
   bottom: 0;
   padding: 1.5rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.9) 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -318,12 +383,6 @@ export default {
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.project-card.center .project-badge {
-  font-size: 0.7rem;
-  padding: 0.45rem 1rem;
 }
 
 /* Badge color variants */
@@ -349,42 +408,19 @@ export default {
 
 .project-title {
   font-family: 'Dela Gothic One', cursive;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: white;
   text-transform: uppercase;
   text-align: left;
   line-height: 1.2;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   margin: 0;
-  padding: 1.5rem;
-  padding-top: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 70%, transparent 100%);
-  margin: -1.5rem;
-  margin-top: auto;
+  align-self: flex-end;
 }
 
-.project-card.center .project-title {
-  font-size: 1.3rem;
-}
-
-/* Gradient overlays for edge cards */
+/* Gradient overlays for edge cards - now handled by ::before and ::after on section */
 .carousel-gradient {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 150px;
-  pointer-events: none;
-  z-index: 15;
-}
-
-.carousel-gradient-left {
-  left: 0;
-  background: linear-gradient(to right, white 0%, transparent 100%);
-}
-
-.carousel-gradient-right {
-  right: 0;
-  background: linear-gradient(to left, white 0%, transparent 100%);
+  display: none;
 }
 
 .carousel-nav {
@@ -440,31 +476,27 @@ export default {
 
 /* Mobile responsive */
 @media (max-width: 1024px) {
-  .project-card.side {
-    width: 26%;
+  :root {
+    --project-card-width: 350px;
   }
 
   .project-card.center {
-    width: 42%;
-  }
-
-  .carousel-gradient {
-    width: 100px;
+    transform: scale(1.08);
   }
 }
 
 @media (max-width: 768px) {
+  :root {
+    --project-card-width: 300px;
+    --project-card-gap: 1.5rem;
+  }
+
   .projects-title {
     font-size: 2rem;
   }
 
-  .project-card.side {
-    display: none;
-  }
-
   .project-card.center {
-    width: 90%;
-    transform: scale(1);
+    transform: scale(1.05);
   }
 
   .carousel-nav {
@@ -481,10 +513,6 @@ export default {
     gap: 1rem;
   }
 
-  .carousel-gradient {
-    display: none;
-  }
-
   .project-title {
     font-size: 1rem;
   }
@@ -493,18 +521,14 @@ export default {
     font-size: 0.6rem;
     padding: 0.3rem 0.7rem;
   }
-
-  .project-card.center .project-badge {
-    font-size: 0.6rem;
-    padding: 0.3rem 0.7rem;
-  }
-
-  .project-card.center .project-title {
-    font-size: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
+  :root {
+    --project-card-width: 280px;
+    --project-card-gap: 1rem;
+  }
+
   .projects-section {
     padding: 3rem 0;
   }
@@ -513,16 +537,13 @@ export default {
     padding: 0 1rem;
   }
 
-  .project-card.center {
-    width: 100%;
-  }
-
   .project-content {
     padding: 1rem;
   }
 
-  .project-title {
-    padding: 1rem;
+  .carousel-nav {
+    width: 45px;
+    height: 45px;
   }
 }
 </style>
