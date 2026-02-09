@@ -34,6 +34,7 @@
                 'center': isCenterCard(index),
                 'side': !isCenterCard(index)
               }"
+              :style="{ width: cardWidth + 'px' }"
             >
               <div class="project-image-container">
                 <img 
@@ -153,7 +154,8 @@ export default {
       
       return {
         transform: `translateX(calc(-${offset}px - ${this.cardWidth / 2}px))`,
-        transition: this.transitionEnabled ? 'transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)' : 'none'
+        transition: this.transitionEnabled ? 'transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)' : 'none',
+        gap: this.cardGap + 'px'
       }
     },
     totalProjects() {
@@ -176,6 +178,8 @@ export default {
         this.cardWidth = 400;
         this.cardGap = 32; // 2rem
       }
+      // Force Vue to recalculate the trackStyle
+      this.$forceUpdate();
     },
     isCenterCard(index) {
       // The center card is the one at currentSlide
@@ -231,11 +235,6 @@ export default {
 </script>
 
 <style scoped>
-:root {
-  --project-card-width: 400px;
-  --project-card-gap: 2rem;
-}
-
 .projects-section {
   background: white;
   padding: 5rem 0;
@@ -300,19 +299,17 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 350px;
+  min-height: 300px;
 }
 
 .carousel-track {
   display: flex;
-  gap: var(--project-card-gap, 2rem);
   align-items: center;
   position: absolute;
   left: 50%;
 }
 
 .project-card {
-  width: var(--project-card-width, 400px);
   flex-shrink: 0;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -476,27 +473,39 @@ export default {
 
 /* Mobile responsive */
 @media (max-width: 1024px) {
-  :root {
-    --project-card-width: 350px;
-  }
-
   .project-card.center {
     transform: scale(1.08);
   }
 }
 
 @media (max-width: 768px) {
-  :root {
-    --project-card-width: 300px;
-    --project-card-gap: 1.5rem;
-  }
-
   .projects-title {
     font-size: 2rem;
   }
 
+  .projects-section::before,
+  .projects-section::after {
+    width: 80px;
+  }
+
+  .carousel-track-container {
+    min-height: 220px;
+    padding: 1.5rem 0;
+  }
+
+  .project-card {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+
   .project-card.center {
-    transform: scale(1.05);
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .project-card.side {
+    transform: scale(0.9);
+    opacity: 0.5;
   }
 
   .carousel-nav {
@@ -524,17 +533,17 @@ export default {
 }
 
 @media (max-width: 480px) {
-  :root {
-    --project-card-width: 280px;
-    --project-card-gap: 1rem;
-  }
-
   .projects-section {
     padding: 3rem 0;
   }
 
   .projects-container {
     padding: 0 1rem;
+  }
+
+  .carousel-track-container {
+    min-height: 200px;
+    padding: 1rem 0;
   }
 
   .project-content {
