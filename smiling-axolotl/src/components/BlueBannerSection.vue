@@ -1,5 +1,12 @@
 <template>
   <section class="blue-banner-section">
+    <!-- Top curve -->
+    <div class="banner-curve banner-curve-top">
+      <svg class="curve-svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0,0 Q720,100 1440,0 L1440,100 L0,100 Z" fill="#2898ff" />
+      </svg>
+    </div>
+
     <div class="blue-banner-container">
       <h2 class="blue-banner-title">
         <span 
@@ -45,6 +52,13 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Bottom curve -->
+    <div class="banner-curve banner-curve-bottom">
+      <svg class="curve-svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0,0 L0,100 Q720,0 1440,100 L1440,0 Z" fill="#2898ff" />
+      </svg>
     </div>
   </section>
 </template>

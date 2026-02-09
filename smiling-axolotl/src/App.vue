@@ -4,6 +4,7 @@
     <HeroSection />
     <BlueBannerSection />
     <GrowBrandSection />
+    <ProjectsSection />
     <StrategicSection />
     <ServicesSection />
     <FooterSection />
@@ -16,6 +17,7 @@ import StickyNavbar from './components/StickyNavbar.vue';
 import HeroSection from './components/HeroSection.vue';
 import BlueBannerSection from './components/BlueBannerSection.vue';
 import GrowBrandSection from './components/GrowBrandSection.vue';
+import ProjectsSection from './components/ProjectsSection.vue';
 import StrategicSection from './components/StrategicSection.vue';
 import ServicesSection from './components/ServicesSection.vue';
 import FooterSection from './components/FooterSection.vue';
@@ -28,6 +30,7 @@ export default {
     HeroSection,
     BlueBannerSection,
     GrowBrandSection,
+    ProjectsSection,
     StrategicSection,
     ServicesSection,
     FooterSection,

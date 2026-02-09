@@ -126,5 +126,12 @@
   },
   "language": {
     "switch": "Switch to English"
+  },
+  "projects": {
+    "title": "NUESTROS {projects}",
+    "projects": "PROYECTOS",
+    "discover": "DESCUBRE MÁS",
+    "previous": "Proyecto anterior",
+    "next": "Siguiente proyecto"
   }
 }
