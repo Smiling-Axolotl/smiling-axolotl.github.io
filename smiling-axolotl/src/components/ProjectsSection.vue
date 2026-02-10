@@ -301,7 +301,7 @@ export default {
 <style scoped>
 .projects-section {
   background: white;
-  padding: 5rem 0;
+  padding: 12rem 0 8rem;
   position: relative;
   overflow: hidden;
 }
@@ -310,7 +310,7 @@ export default {
 .projects-section::after {
   content: '';
   position: absolute;
-  top: 0;
+  top: 100px;
   bottom: 0;
   width: 200px;
   z-index: 5;
@@ -340,7 +340,7 @@ export default {
   color: #1a1a1a;
   font-weight: 900;
   text-transform: uppercase;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .projects-highlight {
@@ -352,7 +352,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .carousel-track-container {
@@ -528,7 +528,7 @@ export default {
 }
 
 .discover-btn {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -775,10 +775,6 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .projects-section {
-    padding: 3rem 0;
-  }
-
   .projects-container {
     padding: 0 1rem;
   }

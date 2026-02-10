@@ -54,7 +54,22 @@
               class="footer-language-btn"
               :title="$t('language.switch')"
             >
-              {{ currentLang.toUpperCase() }}
+              <div class="footer-flag-container">
+                <img 
+                  v-if="currentLang === 'en'" 
+                  :src="usaFlag" 
+                  alt="USA Flag" 
+                  class="footer-flag"
+                />
+                <img 
+                  v-else 
+                  :src="mexicoFlag" 
+                  alt="Mexico Flag" 
+                  class="footer-flag"
+                />
+              </div>
+              <span class="footer-lang-name">{{ currentLang === 'en' ? 'English' : 'Español' }}</span>
+              <img :src="switchIcon" alt="Switch language" class="footer-switch-icon" />
             </button>
             <p class="copyright-bottom-right">{{ $t('footer.copyright') }}</p>
           </div>
@@ -71,6 +86,9 @@
 import CustomButton from './CustomButton.vue';
 import ContactModal from './ContactModal.vue';
 import { setLocale } from '../i18n';
+import usaFlag from '../assets/icons/usaFlag.svg';
+import mexicoFlag from '../assets/icons/mexicoFlag.svg';
+import switchIcon from '../assets/icons/switch.svg';
 
 export default {
   name: 'FooterSection',
@@ -80,7 +98,10 @@ export default {
   },
   data() {
     return {
-      isContactModalOpen: false
+      isContactModalOpen: false,
+      usaFlag,
+      mexicoFlag,
+      switchIcon
     }
   },
   computed: {
@@ -113,24 +134,64 @@ export default {
 }
 
 .footer-language-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  padding: 0.6rem 1.25rem;
+  border-radius: 50px;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-family: 'Dela Gothic One', cursive;
+  font-weight: 700;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
-  min-width: 60px;
+  min-width: 180px;
 }
 
 .footer-language-btn:hover {
   background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
+}
+
+.footer-flag-container {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-flag {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.footer-lang-name {
+  flex: 1;
+  text-align: center;
+  font-family: 'Dela Gothic One', cursive;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: white;
+}
+
+.footer-switch-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.footer-language-btn:hover .footer-switch-icon {
+  transform: rotate(180deg);
 }
 
 @media (max-width: 992px) {

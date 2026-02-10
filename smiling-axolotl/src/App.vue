@@ -2,7 +2,6 @@
   <div id="app">
     <StickyNavbar />
     <HeroSection />
-    <BlueBannerSection />
     <GrowBrandSection />
     <ProjectsSection />
     <StrategicSection />
@@ -15,7 +14,6 @@
 <script>
 import StickyNavbar from './components/StickyNavbar.vue';
 import HeroSection from './components/HeroSection.vue';
-import BlueBannerSection from './components/BlueBannerSection.vue';
 import GrowBrandSection from './components/GrowBrandSection.vue';
 import ProjectsSection from './components/ProjectsSection.vue';
 import StrategicSection from './components/StrategicSection.vue';
@@ -28,7 +26,6 @@ export default {
   components: {
     StickyNavbar,
     HeroSection,
-    BlueBannerSection,
     GrowBrandSection,
     ProjectsSection,
     StrategicSection,

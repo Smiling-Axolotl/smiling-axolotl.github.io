@@ -4,10 +4,11 @@
       <h2 class="services-title">
         <i18n-t keypath="ourServices.title" tag="span">
           <template #services>
-            <span>{{ $t('ourServices.services') }}</span>
+            <span class="services-highlight">{{ $t('ourServices.services') }}</span>
           </template>
         </i18n-t>
       </h2>
+
       <div class="services-tabs">
         <button
           class="tab-btn"
@@ -214,4 +215,7 @@ export default {
 </script>
 
 <style scoped>
+.services-highlight {
+  color: #2898ff;
+}
 </style>
