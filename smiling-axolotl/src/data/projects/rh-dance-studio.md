@@ -1,9 +1,0 @@
----
-title: RH Dance Studio
-image: /images/projects/rhdancethumbnail.png
-tags:
-  - OWNERSHIP
-  - PARTNERSHIP
-description: TBD
-url: https://www.roblox.com/games/8457392226/RH-Dance-Studio
----

@@ -40,7 +40,7 @@
             >
               <div class="project-image-container">
                 <img 
-                  :src="project.image" 
+                  :src="`/public${project.image}`" 
                   :alt="project.title"
                   class="project-image"
                 />
