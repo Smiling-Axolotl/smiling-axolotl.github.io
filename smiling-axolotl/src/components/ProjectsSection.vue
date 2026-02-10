@@ -447,8 +447,7 @@ export default {
   font-family: 'Dela Gothic One', cursive;
   font-size: 0.65rem;
   text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
 }
 
 /* Badge color variants */
@@ -474,12 +473,12 @@ export default {
 
 .project-title {
   font-family: 'Dela Gothic One', cursive;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: white;
   text-transform: uppercase;
   text-align: left;
   line-height: 1.2;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   margin: 0;
   align-self: flex-end;
 }

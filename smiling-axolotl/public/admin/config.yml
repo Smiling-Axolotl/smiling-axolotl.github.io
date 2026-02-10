@@ -9,6 +9,8 @@ collections:
   - name: "projects"
     label: "Projects"
     folder: "smiling-axolotl/src/data/projects"
+    format: "json"
+    extension: "json"
     create: true
     slug: "{{slug}}"
     fields:
