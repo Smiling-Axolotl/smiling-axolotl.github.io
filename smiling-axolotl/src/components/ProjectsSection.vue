@@ -21,49 +21,55 @@
         </button>
 
         <div class="carousel-track-container">
-          <div 
-            class="carousel-track" 
-            :style="trackStyle"
-            :class="{ 'animating': isAnimating }"
+          <Swiper
+            :modules="modules"
+            :slides-per-view="3"
+            :space-between="spaceBetween"
+            :centered-slides="true"
+            :loop="true"
+            :autoplay="{
+              delay: 1000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }"
+            :breakpoints="breakpoints"
+            :speed="600"
+            @swiper="onSwiper"
+            @slideChange="onSlideChange"
+            class="projects-swiper"
           >
-            <div 
-              v-for="(project, index) in displayProjects" 
+            <SwiperSlide 
+              v-for="(project, index) in projects" 
               :key="`${index}-${project.title}`"
-              class="project-card"
-              :class="{ 
-                'center': isCenterCard(index),
-                'side': !isCenterCard(index),
-                'expanded': selectedProject && selectedProject.index === index
-              }"
-              :style="{ width: cardWidth + 'px' }"
-              @click="isCenterCard(index) && !selectedProject ? openProjectModal(project, index) : null"
+              class="swiper-slide-custom"
             >
-              <div class="project-image-container">
-                <img 
-                  :src="project.image" 
-                  :alt="project.title"
-                  class="project-image"
-                />
-                <div class="project-content">
-                  <div class="project-badges">
-                    <span 
-                      v-for="(badge, badgeIndex) in project.badges" 
-                      :key="badgeIndex"
-                      class="project-badge"
-                      :class="`badge-${badge.toLowerCase()}`"
-                    >
-                      {{ badge }}
-                    </span>
+              <div 
+                class="project-card"
+                @click="openProjectModal(project, index)"
+              >
+                <div class="project-image-container">
+                  <img 
+                    :src="project.image" 
+                    :alt="project.title"
+                    class="project-image"
+                  />
+                  <div class="project-content">
+                    <div class="project-badges">
+                      <span 
+                        v-for="(badge, badgeIndex) in project.badges" 
+                        :key="badgeIndex"
+                        class="project-badge"
+                        :class="`badge-${badge.toLowerCase()}`"
+                      >
+                        {{ badge }}
+                      </span>
+                    </div>
+                    <h3 class="project-title">{{ project.title }}</h3>
                   </div>
-                  <h3 class="project-title">{{ project.title }}</h3>
                 </div>
               </div>
-            </div>
-          </div>
-          
-          <!-- Gradient overlays for edge cards -->
-          <div class="carousel-gradient carousel-gradient-left"></div>
-          <div class="carousel-gradient carousel-gradient-right"></div>
+            </SwiperSlide>
+          </Swiper>
         </div>
 
         <button 
@@ -145,6 +151,9 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 import CustomButton from './CustomButton.vue';
 
 // Import all project JSON files dynamically
@@ -153,50 +162,42 @@ const projectModules = import.meta.glob('../data/projects/*.json', { eager: true
 export default {
   name: 'ProjectsSection',
   components: {
-    CustomButton
+    CustomButton,
+    Swiper,
+    SwiperSlide
   },
   data() {
     return {
-      currentSlide: 0,
-      isAnimating: false,
-      transitionEnabled: true,
-      cardWidth: 400,
-      cardGap: 32,
       selectedProject: null,
-      projects: []
+      projects: [],
+      swiperInstance: null,
+      modules: [Autoplay],
+      spaceBetween: 32,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 16,
+        },
+        480: {
+          slidesPerView: 1,
+          spaceBetween: 16,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 24,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32,
+        }
+      }
     }
   },
   created() {
     // Load projects from JSON files
     this.loadProjects();
   },
-  mounted() {
-    // Start at the first real slide (after clones)
-    this.currentSlide = this.projects.length;
-    this.updateCardDimensions();
-    window.addEventListener('resize', this.updateCardDimensions);
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.updateCardDimensions);
-  },
   computed: {
-    displayProjects() {
-      // Clone projects at start and end for infinite loop
-      return [...this.projects, ...this.projects, ...this.projects];
-    },
-    trackStyle() {
-      // Calculate the offset to keep the current card centered
-      const offset = this.currentSlide * (this.cardWidth + this.cardGap);
-      
-      return {
-        transform: `translateX(calc(-${offset}px - ${this.cardWidth / 2}px))`,
-        transition: this.transitionEnabled ? 'transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)' : 'none',
-        gap: this.cardGap + 'px'
-      }
-    },
-    totalProjects() {
-      return this.projects.length;
-    },
     modalCardWidth() {
       const width = window.innerWidth;
       if (width <= 480) return 320;
@@ -216,27 +217,11 @@ export default {
         url: module.default.url
       }));
     },
-    updateCardDimensions() {
-      const width = window.innerWidth;
-      if (width <= 480) {
-        this.cardWidth = 280;
-        this.cardGap = 16; // 1rem
-      } else if (width <= 768) {
-        this.cardWidth = 300;
-        this.cardGap = 24; // 1.5rem
-      } else if (width <= 1024) {
-        this.cardWidth = 350;
-        this.cardGap = 32; // 2rem
-      } else {
-        this.cardWidth = 400;
-        this.cardGap = 32; // 2rem
-      }
-      // Force Vue to recalculate the trackStyle
-      this.$forceUpdate();
+    onSwiper(swiper) {
+      this.swiperInstance = swiper;
     },
-    isCenterCard(index) {
-      // The center card is the one at currentSlide
-      return index === this.currentSlide;
+    onSlideChange() {
+      // Optional: Add any slide change logic here
     },
     openProjectModal(project, index) {
       this.selectedProject = { project, index };
@@ -250,46 +235,14 @@ export default {
       window.open(url, '_blank');
     },
     nextSlide() {
-      if (this.isAnimating) return;
-      this.isAnimating = true;
-      this.transitionEnabled = true;
-      
-      this.currentSlide++;
-      
-      setTimeout(() => {
-        // If we've reached the end of the second set, jump to the start of the first set
-        if (this.currentSlide >= this.totalProjects * 2) {
-          this.transitionEnabled = false;
-          this.currentSlide = this.totalProjects;
-          
-          // Re-enable transitions after a brief delay
-          setTimeout(() => {
-            this.transitionEnabled = true;
-          }, 50);
-        }
-        this.isAnimating = false;
-      }, 600);
+      if (this.swiperInstance) {
+        this.swiperInstance.slideNext();
+      }
     },
     prevSlide() {
-      if (this.isAnimating) return;
-      this.isAnimating = true;
-      this.transitionEnabled = true;
-      
-      this.currentSlide--;
-      
-      setTimeout(() => {
-        // If we've reached the start of the first set, jump to the end of the second set
-        if (this.currentSlide < this.totalProjects) {
-          this.transitionEnabled = false;
-          this.currentSlide = this.totalProjects * 2 - 1;
-          
-          // Re-enable transitions after a brief delay
-          setTimeout(() => {
-            this.transitionEnabled = true;
-          }, 50);
-        }
-        this.isAnimating = false;
-      }, 600);
+      if (this.swiperInstance) {
+        this.swiperInstance.slidePrev();
+      }
     },
     discoverMore() {
       window.open('https://www.roblox.com/communities/12277287/Smiling-Axolotl', '_blank');
@@ -357,20 +310,27 @@ export default {
 
 .carousel-track-container {
   flex: 1;
-  overflow: visible;
+  overflow: hidden;
   padding: 2rem 0;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
+  max-height: 400px;
 }
 
-.carousel-track {
+/* Swiper Styles */
+.projects-swiper {
+  width: 100%;
+  height: auto;
+  padding: 2rem 0;
+}
+
+.swiper-slide-custom {
   display: flex;
+  justify-content: center;
   align-items: center;
-  position: absolute;
-  left: 50%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card {
@@ -379,22 +339,15 @@ export default {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(0.85);
   opacity: 0.6;
+  width: 100%;
 }
 
-.project-card.center {
+/* Swiper active slide styles */
+.swiper-slide-active .project-card {
   transform: scale(1.1);
   opacity: 1;
   z-index: 10;
   cursor: pointer;
-}
-
-.project-card.expanded {
-  visibility: hidden;
-}
-
-.project-card.side {
-  transform: scale(0.85);
-  opacity: 0.6;
 }
 
 .project-card:hover {
@@ -698,7 +651,7 @@ export default {
 
 /* Mobile responsive */
 @media (max-width: 1024px) {
-  .project-card.center {
+  .swiper-slide-active .project-card {
     transform: scale(1.08);
   }
 }
@@ -714,7 +667,7 @@ export default {
   }
 
   .carousel-track-container {
-    min-height: 220px;
+    max-height: 280px;
     padding: 1.5rem 0;
   }
 
@@ -723,14 +676,9 @@ export default {
     opacity: 0.5;
   }
 
-  .project-card.center {
+  .swiper-slide-active .project-card {
     transform: scale(1);
     opacity: 1;
-  }
-
-  .project-card.side {
-    transform: scale(0.9);
-    opacity: 0.5;
   }
 
   .carousel-nav {
@@ -780,7 +728,7 @@ export default {
   }
 
   .carousel-track-container {
-    min-height: 200px;
+    max-height: 240px;
     padding: 1rem 0;
   }
 
