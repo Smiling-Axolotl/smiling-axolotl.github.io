@@ -28,7 +28,7 @@
             :centered-slides="true"
             :loop="true"
             :autoplay="{
-              delay: 1000,
+              delay: 1500,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
             }"
@@ -226,10 +226,18 @@ export default {
     openProjectModal(project, index) {
       this.selectedProject = { project, index };
       document.body.style.overflow = 'hidden';
+      // Stop autoplay when modal opens
+      if (this.swiperInstance && this.swiperInstance.autoplay) {
+        this.swiperInstance.autoplay.stop();
+      }
     },
     closeProjectModal() {
       this.selectedProject = null;
       document.body.style.overflow = '';
+      // Resume autoplay when modal closes
+      if (this.swiperInstance && this.swiperInstance.autoplay) {
+        this.swiperInstance.autoplay.start();
+      }
     },
     visitProject(url) {
       window.open(url, '_blank');
