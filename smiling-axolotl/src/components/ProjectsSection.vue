@@ -453,7 +453,7 @@ export default {
 }
 
 .carousel-nav {
-  background: white;
+  background: #2898ff;
   border: none;
   width: 60px;
   height: 60px;
@@ -463,17 +463,15 @@ export default {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(40, 152, 255, 0.4);
   flex-shrink: 0;
   z-index: 20;
   position: relative;
 }
 
 .carousel-nav:hover {
-  background: #2898ff;
-  color: white;
   transform: scale(1.15);
-  box-shadow: 0 6px 20px rgba(40, 152, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(40, 152, 255, 0.5);
 }
 
 .carousel-nav:active {
@@ -483,11 +481,6 @@ export default {
 .carousel-nav svg {
   width: 28px;
   height: 28px;
-  color: #2898ff;
-  transition: color 0.3s ease;
-}
-
-.carousel-nav:hover svg {
   color: white;
 }
 
