@@ -5,5 +5,6 @@
   ],
   "image": "/images/projects/proposalthumbnail.png",
   "title": "Omenaso's Proposal",
-  "description": "TBD"
+  "description": "TBD",
+  "display": true
 }

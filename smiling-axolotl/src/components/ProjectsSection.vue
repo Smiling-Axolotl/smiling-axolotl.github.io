@@ -208,14 +208,17 @@ export default {
   },
   methods: {
     loadProjects() {
-      // Convert imported modules to project array
-      this.projects = Object.values(projectModules).map(module => ({
-        title: module.default.title,
-        image: module.default.image,
-        badges: module.default.tags,
-        description: module.default.description,
-        url: module.default.url
-      }));
+      // Convert imported modules to project array and filter by display field
+      this.projects = Object.values(projectModules)
+        .map(module => ({
+          title: module.default.title,
+          image: module.default.image,
+          badges: module.default.tags,
+          description: module.default.description,
+          url: module.default.url,
+          display: module.default.display
+        }))
+        .filter(project => project.display !== false); // Show if display is true or undefined
     },
     onSwiper(swiper) {
       this.swiperInstance = swiper;
